@@ -23,6 +23,12 @@ module.exports = {
         singleline: 20,
       },
     ],
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
   },
   globals: {
     $nuxt: true,
