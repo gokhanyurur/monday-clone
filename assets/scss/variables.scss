@@ -1,0 +1,24 @@
+// COLORS
+$colors: (
+  light: #fff,
+  smoke-light: #E6E9EF,
+  light-dark: #535768,
+  dark: #333333,
+  m-gray: #676879,
+  main-blue: #6C6CFF,
+  dark-blue: #595AD4,
+  light-blue: #b4b4ff,
+  lighter-blue: #e5f4ff
+) !default;
+
+// GLOBAL VARS
+$navHeight: 72px;
+
+// BREAKPOINTS
+$breakpoints: (
+  'md':  768px,
+  'lg':  900px,
+  'xl':  1400px
+) !default;
+
+

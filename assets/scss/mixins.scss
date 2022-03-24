@@ -1,0 +1,40 @@
+// HANDLE BREAKPOINTS
+@mixin media-breakpoint-up($breakpoint) {
+  @if map-has-key($breakpoints, $breakpoint) {
+    @media (min-width: map-get($breakpoints, $breakpoint)) {
+      @content;
+    }
+  }
+
+  @else {
+    @warn "No value could be retrieved from `#{$breakpoint}`. "
+        + "Available breakpoints are: #{map-keys($breakpoints)}.";
+  }
+}
+
+// GETS COLOR FROM ITS KEY
+@function get-color($color) {
+  @if map-has-key($colors, $color) {
+    @return map-get($colors, $color);
+  }
+  @warn "No value could be retrieved from `#{$color}`. "
+        + "Available colors are: #{map-keys($colors)}.";
+}
+
+// COLOR CLASSES
+
+@each $color in map-keys($colors) {
+  .bg-#{$color} {
+    background-color: map-get($colors, $color);
+  }
+  .text-#{$color} {
+    color: map-get($colors, $color);
+    span {
+      color: map-get($colors, $color);
+    }
+    svg {
+      fill: map-get($colors, $color);
+    }
+  }
+}
+
