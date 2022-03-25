@@ -1,5 +1,5 @@
 <template>
-  <div class="z-50 fixed top-0 w-full">
+  <header class="z-50 fixed top-0 w-full">
     <div class="m__nav hidden lg:block">
       <div class="m__container flex">
         <Logo />
@@ -23,7 +23,13 @@
               v-for="(navItem, index) in navLeftSide"
               :key="`nav-item-${index}`"
             >
-              <Dropdown v-if="navItem.isDropdown" classes="px-4 m__nav__item">
+              <Dropdown
+                v-if="navItem.isDropdown"
+                classes="px-4 m__nav__item"
+                :is-opened="navItem.isOpened"
+                :title="navItem.title"
+                @updateVisibility="handleDropdownVisibility"
+              >
                 {{ navItem.title }}
                 <template #content>
                   <div class="m__container">
@@ -72,7 +78,7 @@
       </div>
     </div>
     <div class="m__nav__mobile block lg:hidden"></div>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -98,6 +104,7 @@ export default {
       navLeftSide: [
         {
           isDropdown: true,
+          isOpened: false,
           title: "Product",
           sections: [
             {
@@ -198,6 +205,7 @@ export default {
         },
         {
           isDropdown: true,
+          isOpened: false,
           title: "Solutions",
           sections: [
             {
@@ -309,6 +317,17 @@ export default {
         },
       ],
     };
+  },
+  methods: {
+    handleDropdownVisibility(data) {
+      this.navLeftSide.forEach((item) => {
+        if (item.title === data.title) {
+          item.isOpened = data.isOpened;
+        } else if (item.isDropdown && item.title !== data.title) {
+          item.isOpened = false;
+        }
+      });
+    },
   },
 };
 </script>
