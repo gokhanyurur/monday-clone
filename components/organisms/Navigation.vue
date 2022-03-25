@@ -1,6 +1,6 @@
 <template>
   <header class="z-50 fixed top-0 w-full">
-    <div class="m__nav hidden lg:block">
+    <div class="m__nav hidden lg:block with-shadow">
       <div class="m__container flex">
         <Logo />
         <nav class="m__nav__wrapper">

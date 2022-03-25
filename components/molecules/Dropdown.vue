@@ -29,7 +29,7 @@
     </template>
     <template>
       <span
-        class="m__dropdown__content pt-6 pb-6"
+        class="m__dropdown__content pt-6 pb-6 with-shadow"
         :class="!isOpened ? 'hidden' : ''"
       >
         <slot name="content" />
