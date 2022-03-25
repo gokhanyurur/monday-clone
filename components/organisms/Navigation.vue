@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="z-50 fixed top-0 w-full">
     <div class="m__nav hidden lg:block">
       <div class="m__container flex">
         <Logo />
