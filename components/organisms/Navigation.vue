@@ -1,5 +1,5 @@
 <template>
-  <header class="z-50 fixed top-0 w-full">
+  <header v-click-outside="onClickOutside" class="z-50 fixed top-0 w-full">
     <div class="m__nav hidden lg:block with-shadow">
       <div class="m__container flex">
         <Logo />
@@ -82,13 +82,18 @@
 </template>
 
 <script>
+import vClickOutside from "v-click-outside";
 import Logo from "@/components/atoms/Logo";
 import Button from "@/components/atoms/Button";
 import Dropdown from "@/components/molecules/Dropdown";
 import DropdownItem from "@/components/atoms/DropdownItem";
+
 export default {
   name: "Navigation",
   components: { Dropdown, Logo, Button, DropdownItem },
+  directives: {
+    clickOutside: vClickOutside.directive,
+  },
   data() {
     return {
       navRightSide: [
@@ -319,6 +324,12 @@ export default {
     };
   },
   methods: {
+    onClickOutside() {
+      this.navLeftSide.forEach((item) => {
+        item.isOpened = false;
+      });
+      this.removeBlurFromBody();
+    },
     addBlurToBody() {
       document.getElementById("main-body").classList.add("m__body--blur");
     },
