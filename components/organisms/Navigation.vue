@@ -319,10 +319,21 @@ export default {
     };
   },
   methods: {
+    addBlurToBody() {
+      document.getElementById("main-body").classList.add("m__body--blur");
+    },
+    removeBlurFromBody() {
+      document.getElementById("main-body").classList.remove("m__body--blur");
+    },
     handleDropdownVisibility(data) {
       this.navLeftSide.forEach((item) => {
         if (item.title === data.title) {
           item.isOpened = data.isOpened;
+          if (item.isOpened) {
+            this.addBlurToBody();
+          } else {
+            this.removeBlurFromBody();
+          }
         } else if (item.isDropdown && item.title !== data.title) {
           item.isOpened = false;
         }

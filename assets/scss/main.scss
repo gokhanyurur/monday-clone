@@ -16,6 +16,11 @@ a {
 }
 
 .m {
+  &__body {
+    &--blur {
+      filter: blur(4px);
+    }
+  }
   &__container {
     padding: 0 12px; //32px before
     margin-left: auto;
