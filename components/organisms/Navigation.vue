@@ -77,7 +77,94 @@
         </nav>
       </div>
     </div>
-    <div class="m__nav__mobile block lg:hidden"></div>
+    <div class="m__nav block lg:hidden">
+      <div class="flex px-8">
+        <Logo />
+        <nav class="m__nav__wrapper flex grow justify-end">
+          <div class="flex justify-center items-center">
+            <div
+              class="m__hamburger-menu"
+              :class="mobileOpen ? 'open' : ''"
+              @click="toggleMobileNav"
+            >
+              <span class="m__hamburger-menu__line"></span>
+              <span class="m__hamburger-menu__line"></span>
+              <span class="m__hamburger-menu__line"></span>
+              <span class="m__hamburger-menu__line"></span>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div v-if="mobileOpen" class="m__nav__mobile__content">
+        <div
+          v-for="(navItem, index) in navLeftSide"
+          :key="`nav-item-${navItem.title}-${index}`"
+          style="border-bottom: 1px solid #f1f1f1"
+        >
+          <Dropdown
+            v-if="navItem.isDropdown"
+            classes="text-xl font-light m__nav__item"
+            :is-opened="navItem.isOpened"
+            :title="navItem.title"
+            @updateVisibility="handleDropdownVisibility"
+          >
+            {{ navItem.title }}
+            <template #content>
+              <div
+                v-for="(section, sectionIndex) in navItem.sections"
+                :key="`nav-section-${sectionIndex}`"
+                class="m__dropdown__section ml-3 mb-9"
+              >
+                <h4
+                  class="font-black py-3"
+                  style="border-bottom: 1px solid #f1f1f1"
+                >
+                  {{ section.title }}
+                </h4>
+                <div class="lg:mt-3 lg:mb-4">
+                  <DropdownItem
+                    v-for="(dropdownItem, dropdownItemKey) in section.items"
+                    :key="`dropdown-item-mobile-${dropdownItemKey}`"
+                    :title="dropdownItem.title"
+                    :url="dropdownItem.url"
+                    :badge-txt="dropdownItem.badgeTxt"
+                  />
+                </div>
+              </div>
+            </template>
+          </Dropdown>
+          <a
+            v-else
+            :href="navItem.url"
+            class="text-xl font-light m__nav__item flex"
+          >
+            <span>
+              {{ navItem.title }}
+            </span>
+          </a>
+        </div>
+        <div
+          v-for="(navItem, index) in navRightSide"
+          :key="`nav-item-${navItem.title}-${index}`"
+          style="border-bottom: 1px solid #f1f1f1"
+        >
+          <a :href="navItem.url" class="text-xl font-light m__nav__item flex">
+            <span>
+              {{ navItem.title }}
+            </span>
+          </a>
+        </div>
+        <div class="mt-8">
+          <a href="#">
+            <img
+              alt="google play"
+              class="w-44 mx-auto"
+              src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/img/apps/google_play.png"
+            />
+          </a>
+        </div>
+      </div>
+    </div>
   </header>
 </template>
 
@@ -96,6 +183,7 @@ export default {
   },
   data() {
     return {
+      mobileOpen: false,
       navRightSide: [
         {
           title: "Contact sales",
@@ -324,6 +412,24 @@ export default {
     };
   },
   methods: {
+    toggleMobileNav() {
+      this.mobileOpen = !this.mobileOpen;
+      if (this.mobileOpen) {
+        this.hideBodyScroll();
+      } else {
+        this.addBodyScroll();
+      }
+    },
+    hideBodyScroll() {
+      document
+        .getElementsByTagName("BODY")[0]
+        .classList.add("m__body--hide-scroll");
+    },
+    addBodyScroll() {
+      document
+        .getElementsByTagName("BODY")[0]
+        .classList.remove("m__body--hide-scroll");
+    },
     onClickOutside() {
       this.navLeftSide.forEach((item) => {
         item.isOpened = false;

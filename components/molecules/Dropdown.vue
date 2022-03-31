@@ -1,10 +1,9 @@
 <template>
   <div>
     <template>
-      <a
-        href="#"
+      <div
         :class="[classes, { 'text-dark-blue': isOpened }]"
-        class="cursor-pointer flex justify-center items-center"
+        class="cursor-pointer flex"
         @click="handleClick"
       >
         <span>
@@ -12,8 +11,6 @@
         </span>
         <span class="pl-2">
           <svg
-            width="8"
-            height="8"
             viewBox="0 0 256 256"
             xmlns="http://www.w3.org/2000/svg"
             class="m__dropdown__icon"
@@ -25,15 +22,15 @@
             ></path>
           </svg>
         </span>
-      </a>
+      </div>
     </template>
     <template>
-      <span
-        class="m__dropdown__content pt-6 pb-6 with-shadow"
-        :class="!isOpened ? 'hidden' : ''"
+      <div
+        class="m__dropdown__content with-shadow--lg"
+        :class="!isOpened ? 'lg:hidden' : 'open'"
       >
         <slot name="content" />
-      </span>
+      </div>
     </template>
   </div>
 </template>

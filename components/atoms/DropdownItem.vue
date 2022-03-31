@@ -1,6 +1,6 @@
 <template>
-  <a :href="url" class="px-2 py-4 mr-4 flex m__dropdown__item">
-    <div class="mr-4">
+  <a :href="url" class="lg:px-2 lg:py-4 lg:mr-4 flex m__dropdown__item">
+    <div v-if="icon !== null" class="mr-4">
       <img
         class="m__dropdown__section__svg-icon"
         :src="getImgUrl(icon)"
@@ -10,9 +10,9 @@
       />
     </div>
     <div class="dropdown-item-content">
-      <div class="flex">
-        <span class="font-bold text-dark">{{ title }}</span>
-        <div v-if="badgeTxt !== undefined" class="ml-2">
+      <div class="flex dropdown-item-content__title__wrapper">
+        <span class="text-light lg:font-bold text-dark">{{ title }}</span>
+        <div v-if="badgeTxt !== null" class="ml-2">
           <span
             v-if="badgeTxt.trim() !== ''"
             class="bg-light-blue text-dark text-xs py-1 px-2 rounded-sm"
@@ -20,7 +20,7 @@
           >
         </div>
       </div>
-      <span>
+      <span v-if="description !== null">
         <div class="mt-1 text-sm m__dropdown__section__page__desc">
           {{ description }}
         </div>
@@ -35,7 +35,7 @@ export default {
   props: {
     icon: {
       type: String,
-      default: "",
+      default: null,
     },
     title: {
       type: String,
@@ -43,7 +43,7 @@ export default {
     },
     description: {
       type: String,
-      default: "",
+      default: null,
     },
     url: {
       type: String,
@@ -51,7 +51,7 @@ export default {
     },
     badgeTxt: {
       type: String,
-      default: undefined,
+      default: null,
     },
   },
   methods: {
@@ -65,5 +65,14 @@ export default {
 <style scoped lang="scss">
 .dropdown-item-content {
   max-width: 235px;
+  &__title {
+    &__wrapper {
+      @media (max-width: 900px) {
+        height: 100%;
+        justify-items: center;
+        align-items: center;
+      }
+    }
+  }
 }
 </style>

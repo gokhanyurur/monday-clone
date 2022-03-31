@@ -1,4 +1,55 @@
 .m {
+  &__hamburger-menu {
+    width: 28px;
+    transform: rotate(0deg);
+    cursor: pointer;
+    z-index: 600;
+    margin-left: 24px;
+    margin-right: 8px;
+    height: 36px;
+    display: flex;
+    &__line {
+      height: 2px;
+      display: block;
+      position: absolute;
+      width: 100%;
+      background-color: #333333;
+      border-radius: 4px;
+      opacity: 1;
+      left: 0;
+      transform: rotate(0deg);
+      transition: all 0.3s ease-in-out;
+      &:nth-child(1) {
+        top: 8px;
+      }
+      &:nth-child(2), &:nth-child(3) {
+        top: 16px;
+      }
+      &:nth-child(4) {
+        top: 24px;
+      }
+    }
+    &.open {
+      .m__hamburger-menu__line {
+        &:nth-child(1) {
+          top: 18px;
+          width: 0;
+          left: 50%;
+        }
+        &:nth-child(2) {
+          transform: rotate(45deg);
+        }
+        &:nth-child(3) {
+          transform: rotate(-45deg);
+        }
+        &:nth-child(4) {
+          top: 18px;
+          width: 0;
+          left: 50%;
+        }
+      }
+    }
+  }
   &__nav {
     background-color: get-color('light');
     box-shadow: 0 18px 30px rgb(0 0 0 / 3%);
@@ -8,37 +59,77 @@
       height: $navHeight;
     }
     &__item {
+      align-items: center;
+      height: 70px;
+      @include media-breakpoint-up('lg') {
+        justify-content: center;
+        height: initial;
+      }
       &:hover {
-        @extend .text-dark-blue;
+        @include media-breakpoint-up('lg') {
+          color: get-color('dark-blue')
+        }
+      }
+    }
+    &__mobile {
+      &__content {
+        height: 100vh;
+        background: get-color('light');
+        padding: 0 32px calc(#{$navHeight} + 80px) 32px;
+        overflow-y: auto;
       }
     }
   }
   &__dropdown {
     &__item {
+      height: 48px;
+      @include media-breakpoint-up('lg'){
+        height: initial;
+      }
       &:hover {
         background-color: get-color('lighter-blue');
       }
     }
     &__content {
-      position: fixed;
-      top: $navHeight;
-      left: 0;
       width: 100%;
       background: get-color('light');
       z-index: 100;
+      @include media-breakpoint-down('lg') {
+        overflow: hidden;
+        max-height: 0;
+        transition: all 0.4s ease-in-out;
+        &.open {
+          max-height: 800px;
+        }
+      }
+      @include media-breakpoint-up('lg') {
+        position: fixed;
+        top: $navHeight;
+        left: 0;
+        padding: 24px 0 24px 0;
+        margin: 0;
+      }
     }
     &__icon {
       overflow: hidden;
       transition-duration: 0.2s;
       transition-property: transform;
+      width: 10px;
+      height: 10px;
+      @include media-breakpoint-up('lg') {
+        width: 8px;
+        height: 8px;
+      }
       &--rotate {
         transform: rotate(180deg);
         -webkit-transform: rotate(180deg);
       }
     }
     &__section {
-      &:not(:last-child) {
-        border-right: 1px solid get-color('smoke-light');
+      @include media-breakpoint-up('lg'){
+        &:not(:last-child) {
+          border-right: 1px solid get-color('smoke-light');
+        }
       }
 
       &__item {
