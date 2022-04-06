@@ -9,6 +9,8 @@ module.exports = {
     "^.+\\.ts$": "ts-jest",
     "^.+\\.js$": "babel-jest",
     ".*\\.(vue)$": "vue-jest",
+    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.svg$": "<rootDir>/svgTransform.js",
   },
   collectCoverage: true,
   collectCoverageFrom: [
