@@ -1,9 +1,9 @@
 <template>
   <div>
     <Navigation />
-    <div id="main-body">
+    <main id="main-body">
       <Nuxt />
-    </div>
+    </main>
   </div>
 </template>
 
