@@ -1,5 +1,9 @@
 <template>
   <header v-click-outside="onClickOutside" class="z-50 fixed top-0 w-full">
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
     <div class="m__nav hidden lg:block with-shadow">
       <div class="m__container flex">
         <Logo />
