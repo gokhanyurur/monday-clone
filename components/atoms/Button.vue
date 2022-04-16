@@ -6,11 +6,14 @@
     @click="handlePress()"
   >
     <div class="flex justify-center items-center">
-      <span class="text-sm">{{ text }}</span>
-      <span class="pl-2 pr-1 icon">
+      <span :class="`text-${size}`">{{ text }}</span>
+      <span
+        class="pl-2 pr-1 icon"
+        :style="`--icon-width:${sizes[size].width}px`"
+      >
         <svg
-          width="10"
-          height="14"
+          :width="sizes[size].width"
+          :height="sizes[size].height"
           viewBox="0 0 9 7"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -36,6 +39,24 @@ export default {
       type: String,
       default: "Get Started",
     },
+    size: {
+      type: String,
+      default: "sm",
+    },
+  },
+  data() {
+    return {
+      sizes: {
+        sm: {
+          width: 12,
+          height: 10,
+        },
+        lg: {
+          width: 16,
+          height: 12,
+        },
+      },
+    };
   },
   methods: {
     handlePress() {

@@ -20,13 +20,17 @@
         </h1>
         <h2>{{ "What would you like to manage with monday.com Work OS?" }}</h2>
       </div>
+      <SquareTags />
     </div>
   </div>
 </template>
 
 <script>
+import SquareTags from "@/components/molecules/SquareTags";
+
 export default {
   name: "Header",
+  components: { SquareTags },
   methods: {
     randBetween(min = 0, max = 100, isWidth = false) {
       if (isWidth && process.client) {
@@ -77,7 +81,11 @@ export default {
         width: 0;
         height: 0;
       }
-      to {
+      85% {
+        width: var(--star-size);
+        height: var(--star-size);
+      }
+      100% {
         width: var(--star-size);
         height: var(--star-size);
       }

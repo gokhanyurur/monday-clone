@@ -163,7 +163,7 @@
             <img
               alt="google play"
               class="w-44 mx-auto"
-              src="https://dapulse-res.cloudinary.com/image/upload/f_auto,q_auto/remote_mondaycom_static/img/apps/google_play.png"
+              src="~/assets/img/google-play-download.png"
             />
           </a>
         </div>
