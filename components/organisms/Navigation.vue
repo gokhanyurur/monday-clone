@@ -4,13 +4,13 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <div class="m__nav hidden lg:block with-shadow">
+    <div class="m__nav m__nav__desktop with-shadow">
       <div class="m__container flex">
         <Logo />
         <nav class="m__nav__wrapper">
           <div class="flex float-right h-full items-center pl-8">
             <Button
-              classes="bg-main-blue text-light px-4 py-2 rounded-full outline-none m__btn"
+              classes="bg-main-blue text-light px-4 py-2 rounded-full outline-none m__btn w-fit"
             />
           </div>
           <div class="flex float-right h-full items-center">
@@ -67,7 +67,7 @@
                         </div>
                         <Button
                           v-if="section.seeMore"
-                          classes="text-light-dark text-sm outline-none m__btn m__link mb-4"
+                          classes="text-light-dark text-sm outline-none m__btn m__link mb-4 w-fit"
                           :text="section.seeMore.text"
                         />
                       </div>
@@ -81,7 +81,7 @@
         </nav>
       </div>
     </div>
-    <div class="m__nav block lg:hidden">
+    <div class="m__nav m__nav__mobile">
       <div class="flex px-8">
         <Logo />
         <nav class="m__nav__wrapper flex grow justify-end">

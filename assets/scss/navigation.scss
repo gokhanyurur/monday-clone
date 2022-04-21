@@ -52,7 +52,6 @@
   }
   &__nav {
     background-color: get-color('light');
-    box-shadow: 0 18px 30px rgb(0 0 0 / 3%);
     &__wrapper {
       align-items: center;
       width: 100%;
@@ -71,7 +70,17 @@
         }
       }
     }
+    &__desktop {
+      display: none;
+      @include media-breakpoint-up('lg') {
+        display: block;
+      }
+    }
     &__mobile {
+      display: block;
+      @include media-breakpoint-up('lg') {
+        display: none;
+      }
       &__content {
         height: 100vh;
         background: get-color('light');

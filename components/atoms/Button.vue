@@ -1,17 +1,15 @@
 <template>
-  <button
-    :class="classes"
-    class="relative"
-    style="width: fit-content"
-    @click="handlePress()"
-  >
+  <button :class="classes" class="relative" @click="handlePress()">
     <div class="flex justify-center items-center">
       <span :class="`text-${size}`">{{ text }}</span>
       <span
         class="pl-2 pr-1 icon"
+        :class="disableAnimation ? 'disable-animation' : ''"
         :style="`--icon-width:${sizes[size].width}px`"
       >
+        <slot name="svg" />
         <svg
+          v-if="!customSvg"
           :width="sizes[size].width"
           :height="sizes[size].height"
           viewBox="0 0 9 7"
@@ -43,6 +41,14 @@ export default {
       type: String,
       default: "sm",
     },
+    customSvg: {
+      type: Boolean,
+      default: false,
+    },
+    disableAnimation: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -50,6 +56,10 @@ export default {
         sm: {
           width: 12,
           height: 10,
+        },
+        base: {
+          width: 14,
+          height: 12,
         },
         lg: {
           width: 16,

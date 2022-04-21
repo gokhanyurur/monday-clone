@@ -39,6 +39,9 @@
   .bg-#{$color} {
     background-color: map-get($colors, $color);
   }
+  .border-#{$color} {
+    border-color: map-get($colors, $color);;
+  }
   .text-#{$color} {
     color: map-get($colors, $color);
     span {

@@ -11,7 +11,9 @@
     </div>
     <div class="dropdown-item-content">
       <div class="flex dropdown-item-content__title__wrapper">
-        <span class="text-light lg:font-bold text-dark">{{ title }}</span>
+        <span class="text-light dropdown-item-content__title text-dark">{{
+          title
+        }}</span>
         <div v-if="badgeTxt !== null" class="ml-2">
           <span
             v-if="badgeTxt.trim() !== ''"
@@ -66,6 +68,9 @@ export default {
 .dropdown-item-content {
   max-width: 235px;
   &__title {
+    @media (min-width: 1280px) {
+      font-weight: 700;
+    }
     &__wrapper {
       @media (max-width: 900px) {
         height: 100%;
