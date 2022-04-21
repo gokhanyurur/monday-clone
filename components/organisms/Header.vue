@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import _ from "lodash";
+import debounce from "debounce";
 import SquareTags from "@/components/molecules/SquareTags";
 import MInput from "@/components/atoms/MInput";
 import Button from "@/components/atoms/Button";
@@ -114,8 +114,7 @@ export default {
     this.$nextTick(function () {
       this.onResize();
     });
-    // TODO add debounce to the resize.
-    window.addEventListener("resize", _.debounce(this.onResize, 200));
+    window.addEventListener("resize", debounce(this.onResize, 200, false));
   },
   methods: {
     randBetween(min = 0, max = 100, isWidth = false) {
