@@ -59,7 +59,7 @@ export default {
   width: 140px;
   position: relative;
   &__title {
-    opacity: 85%;
+    opacity: 0.85;
   }
   .checkbox {
     border: 1px solid rgba(255, 255, 255, 0.3);
