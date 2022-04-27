@@ -8,6 +8,9 @@ html {
   font-family: "sofia-pro" !important;
   color: get-color('dark');
 }
+body {
+  line-height: 1.2 !important;
+}
 
 a {
   &:hover {
@@ -41,9 +44,12 @@ a {
   }
   &__btn {
     span.icon {
+      &.disable-animation {
+        transition: initial !important;
+      }
       transition: all 0.3s;
       svg {
-        width: 12px;
+        width: var(--icon-width);
       }
     }
     &:hover {
@@ -52,6 +58,11 @@ a {
         padding-right: 0;
         padding-left: 12px;
         transition: 0.3s ease-in-out;
+        &.disable-animation {
+          transition: initial !important;
+          padding-left: 0.5rem !important;
+          padding-right: 0.25rem !important;
+        }
       }
     }
   }
@@ -99,6 +110,7 @@ a {
 }
 
 .with-shadow {
+  box-shadow: 0 4px 4px rgb(29 140 242 / 8%);
   &--lg {
     @include media-breakpoint-up('lg'){
       box-shadow: 0 4px 4px rgb(29 140 242 / 8%);

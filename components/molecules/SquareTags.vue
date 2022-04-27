@@ -1,0 +1,80 @@
+<template>
+  <div class="square-tags square-tags__grid-component">
+    <div class="flex">
+      <SquareTag
+        v-for="(tag, index) in headerTags.tags"
+        :key="`square-tag-${index}`"
+        class="mt-12 mb-14"
+        v-bind="tag"
+        @updateColors="updateColors"
+      />
+    </div>
+    <div class="flex justify-center items-center">
+      <Button
+        classes="square-tags__btn text-light pl-8 pr-6 py-3 rounded-full outline-none m__btn text-lg w-fit"
+        size="lg"
+        :style="`--background: linear-gradient(to right, ${currentBtnColor})`"
+      />
+    </div>
+  </div>
+</template>
+
+<script>
+import SquareTag from "@/components/atoms/SquareTag";
+import Button from "@/components/atoms/Button";
+import { headerTags } from "@/data/headerTags";
+
+export default {
+  name: "SquareTags",
+  components: { SquareTag, Button },
+  data() {
+    return {
+      defaultBtnColor: "#5034ff 25.69%, #b4b4ff 100%",
+      currentBtnColor: "#5034ff 25.69%, #b4b4ff 100%",
+      selectedTagColors: new Set(),
+      headerTags,
+    };
+  },
+  methods: {
+    updateColors(color, add = false) {
+      if (add) {
+        this.selectedTagColors.add(color);
+      } else {
+        this.selectedTagColors.delete(color);
+      }
+      this.updateCurrentColor();
+    },
+    updateCurrentColor() {
+      if (this.selectedTagColors.size > 0) {
+        const colors = [];
+        let i = 0;
+        const gperc = 100 / (this.selectedTagColors.size - 1);
+        this.selectedTagColors.forEach((color) => {
+          if (this.selectedTagColors.size > 1) {
+            colors.push(`${color} ${i * gperc}%`);
+          } else {
+            colors.push(`${color} 0%, ${color} 100%`);
+          }
+          i++;
+        });
+        this.currentBtnColor = colors.join(", ");
+        return;
+      }
+      this.currentBtnColor = this.defaultBtnColor;
+    },
+  },
+};
+</script>
+
+<style scoped lang="scss">
+.square-tags {
+  &__grid-component {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+  }
+  &__btn {
+    background-image: var(--background);
+  }
+}
+</style>

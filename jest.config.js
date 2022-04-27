@@ -11,6 +11,7 @@ module.exports = {
     ".*\\.(vue)$": "vue-jest",
     "^.+\\.tsx?$": "ts-jest",
     "^.+\\.svg$": "<rootDir>/svgTransform.js",
+    ".+\\.(css|scss|png|jpg|svg)$": "jest-transform-stub",
   },
   collectCoverage: true,
   collectCoverageFrom: [
