@@ -101,16 +101,38 @@ describe("Separator Atom", () => {
   });
 });
 
-// describe("Square Tag Atom", () => {
-//   test("test props", () => {
-//     const wrapper = mount(SquareTag, {
-//       propsData: {
-//         title: "Test tag",
-//         imgSrc: "dev.png",
-//         color: "#ffffff",
-//       },
-//     });
-//     expect(wrapper.vm).toBeTruthy();
-//     console.log(wrapper.html());
-//   });
-// });
+describe("Square Tag Atom", () => {
+  test("test props", () => {
+    const wrapper = mount(SquareTag, {
+      propsData: {
+        title: "Test tag",
+        imgSrc: "dev.png",
+        color: "#ffffff",
+      },
+    });
+    expect(wrapper.vm).toBeTruthy();
+
+    expect(wrapper.findAll("div").at(1).attributes().style).toBe(
+      "--currentColor: #ffffff;"
+    );
+    expect(wrapper.findAll("div").at(4).text()).toBe("Test tag");
+  });
+  test("check toggle functionality", () => {
+    const wrapper = mount(SquareTag, {
+      propsData: {
+        title: "Test tag",
+        imgSrc: "dev.png",
+        color: "#ffffff",
+      },
+    });
+    expect(wrapper.vm).toBeTruthy();
+
+    expect(wrapper.findAll("div").at(1).classes().includes("active")).toBe(
+      false
+    );
+    wrapper.vm.toggleCheck();
+    expect(wrapper.findAll("div").at(1).classes().includes("active")).toBe(
+      true
+    );
+  });
+});
