@@ -218,10 +218,16 @@ export default {
       this.removeBlurFromBody();
     },
     addBlurToBody() {
-      document.getElementById("main-body").classList.add("m__body--blur");
+      const mainBody = document.getElementById("main-body");
+      if (mainBody) {
+        mainBody.classList.add("m__body--blur");
+      }
     },
     removeBlurFromBody() {
-      document.getElementById("main-body").classList.remove("m__body--blur");
+      const mainBody = document.getElementById("main-body");
+      if (mainBody) {
+        mainBody.classList.remove("m__body--blur");
+      }
     },
     handleDropdownVisibility(data) {
       this.navMenuItems.navLeftSide.forEach((item) => {
