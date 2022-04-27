@@ -17,7 +17,7 @@ describe("Dropdown Molecule", () => {
     expect(wrapper.vm).toBeTruthy();
 
     expect(wrapper.find("span").text()).toBe("Open me");
-    expect(wrapper.find(".m__dropdown__icon--rotate").exists()).toBe(true);
+    expect(wrapper.find(".m__dropdown__icon--rotate").exists()).toBe(false);
     expect(wrapper.find(".m__dropdown__content").text()).toBe("Test content");
     expect(wrapper.findAll("div").at(1).classes().includes("test__class")).toBe(
       true
@@ -35,6 +35,7 @@ describe("Dropdown Molecule", () => {
       },
     });
     expect(wrapper.vm).toBeTruthy();
+    expect(wrapper.find(".m__dropdown__icon--rotate").exists()).toBe(true);
     expect(wrapper.findAll("div").at(2).classes().includes("open")).toBe(true);
   });
 });
