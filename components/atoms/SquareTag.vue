@@ -46,9 +46,18 @@ export default {
       return require("@/assets/squareTagsIcons/" + imgSrc);
     },
     toggleCheck() {
-      const el = this.$refs["toggle-div"];
-      el.classList.toggle("active");
-      this.$emit("updateColors", this.color, el.classList.contains("active"));
+      const tag = this.$refs["toggle-div"];
+      const ctaSection = this.$parent.$refs["header-cta-section"];
+      tag.classList.toggle("active");
+
+      tag.classList.add("cluster--selected");
+      ctaSection.classList.add("cluster--selected");
+      setTimeout(() => {
+        tag.classList.remove("cluster--selected");
+        ctaSection.classList.remove("cluster--selected");
+      }, 300);
+
+      this.$emit("updateColors", this.color, tag.classList.contains("active"));
     },
   },
 };
@@ -60,6 +69,22 @@ export default {
   position: relative;
   &__title {
     opacity: 0.85;
+  }
+  .cluster {
+    &--selected {
+      animation: breatheIn 0.3s linear;
+    }
+    @keyframes breatheIn {
+      from {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(0.95);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
   }
   .checkbox {
     border: 1px solid rgba(255, 255, 255, 0.3);
