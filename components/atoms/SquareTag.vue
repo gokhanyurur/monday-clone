@@ -50,14 +50,20 @@ export default {
       const ctaSection = this.$parent.$refs["header-cta-section"];
       tag.classList.toggle("active");
 
-      tag.classList.add("cluster--selected");
-      ctaSection.classList.add("cluster--selected");
-      setTimeout(() => {
-        tag.classList.remove("cluster--selected");
-        ctaSection.classList.remove("cluster--selected");
-      }, 300);
+      if (ctaSection !== undefined) {
+        tag.classList.add("cluster--selected");
+        ctaSection.classList.add("cluster--selected");
+        setTimeout(() => {
+          tag.classList.remove("cluster--selected");
+          ctaSection.classList.remove("cluster--selected");
+        }, 300);
 
-      this.$emit("updateColors", this.color, tag.classList.contains("active"));
+        this.$emit(
+          "updateColors",
+          this.color,
+          tag.classList.contains("active")
+        );
+      }
     },
   },
 };
