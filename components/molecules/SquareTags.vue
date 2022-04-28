@@ -11,10 +11,17 @@
     </div>
     <div class="flex justify-center items-center">
       <Button
-        classes="square-tags__btn text-light pl-8 pr-6 py-3 rounded-full outline-none m__btn text-lg w-fit"
+        classes="square-tags__btn text-light pl-8 pr-6 pt-3 pb-2 rounded-full outline-none m__btn text-lg w-fit"
         size="lg"
         :style="`--background: linear-gradient(to right, ${currentBtnColor})`"
       />
+    </div>
+    <div class="mt-2 flex justify-center items-center">
+      <div class="mt-2 text-sm">
+        {{
+          "No credit card needed &nbsp; ✦ &nbsp; Unlimited time on Free plan"
+        }}
+      </div>
     </div>
   </div>
 </template>

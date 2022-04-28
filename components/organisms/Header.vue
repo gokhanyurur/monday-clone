@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div
-      class="pt-16 m__header m__header__desktop bg-darker-blue-gradient text-light relative"
-    >
+    <div class="pt-16 m__header m__header__desktop text-light relative">
       <div class="m__container">
         <div v-if="reRenderStars" class="m__header__star-canvas">
           <div class="comet-line" />
@@ -18,7 +16,7 @@
           />
         </div>
         <div class="m__header__title text-center">
-          <h1 class="pb-3 pt-9 mb-4">
+          <h1 class="pb-2 pt-5 mb-4">
             {{ "A platform built for a new way of working" }}
           </h1>
           <h2>
@@ -26,6 +24,13 @@
           </h2>
         </div>
         <SquareTags />
+      </div>
+      <div class="m__header__image__wrapper pt-8">
+        <img
+          class="m__header__image"
+          src="~/assets/header/header-img.png"
+          alt=""
+        />
       </div>
     </div>
     <div class="m__header__mobile px-8">
@@ -141,7 +146,7 @@ export default {
 <style scoped lang="scss">
 .m__header {
   min-height: 664px;
-  background: linear-gradient(rgb(0, 1, 51) 0%, rgb(15, 16, 72) 100%);
+  background: linear-gradient(rgb(0, 1, 51) 0%, rgb(21, 21, 88) 100%);
   &__desktop {
     display: none;
     @media (min-width: 1280px) {
@@ -172,7 +177,7 @@ export default {
     .comet-line {
       transform: rotate(0deg);
       width: 105px;
-      top: 340px;
+      top: 317px;
       left: calc(50% - 90px);
       background: linear-gradient(90deg, transparent, #fff);
       position: absolute;
@@ -212,7 +217,7 @@ export default {
     h1 {
       font-size: 80px;
       line-height: 85px;
-      font-weight: 400;
+      font-weight: 600;
       background: linear-gradient(360deg, #ffffff 53.95%, #0b0b4a 207.37%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;

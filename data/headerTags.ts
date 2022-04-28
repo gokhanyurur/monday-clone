@@ -16,11 +16,6 @@ export const headerTags: TagList = {
       color: "#ff158a",
     },
     {
-      title: "IT",
-      imgSrc: "it.png",
-      color: "#a25ddc",
-    },
-    {
       title: "Software development",
       imgSrc: "dev.png",
       color: "#00c875",
@@ -54,6 +49,11 @@ export const headerTags: TagList = {
       title: "Operations",
       imgSrc: "operations.png",
       color: "#4eccc6",
+    },
+    {
+      title: "More workflows",
+      imgSrc: "more-workflows.png",
+      color: "#6c6cff",
     },
   ],
 };
