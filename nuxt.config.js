@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: "monday-clone",
+    title: "monday.com | A new way of working",
     htmlAttrs: {
       lang: "en",
     },

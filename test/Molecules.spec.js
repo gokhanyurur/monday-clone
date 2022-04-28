@@ -55,18 +55,18 @@ describe("SquareTags Molecule", () => {
     // Selects another tag.
     wrapper.findAll("div").at(8).trigger("click");
 
-    expect(wrapper.vm.currentBtnColor).toBe("#ff158a 0%, #a25ddc 100%");
+    expect(wrapper.vm.currentBtnColor).toBe("#ff158a 0%, #00c875 100%");
 
     // Selects one more tag.
     wrapper.findAll("div").at(13).trigger("click");
 
     expect(wrapper.vm.currentBtnColor).toBe(
-      "#ff158a 0%, #a25ddc 50%, #00c875 100%"
+      "#ff158a 0%, #00c875 50%, #f04095 100%"
     );
 
     // Deselect the middle tag selected.
     wrapper.findAll("div").at(8).trigger("click");
 
-    expect(wrapper.vm.currentBtnColor).toBe("#ff158a 0%, #00c875 100%");
+    expect(wrapper.vm.currentBtnColor).toBe("#ff158a 0%, #f04095 100%");
   });
 });

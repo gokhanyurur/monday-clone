@@ -9,12 +9,21 @@
         @updateColors="updateColors"
       />
     </div>
-    <div class="flex justify-center items-center">
-      <Button
-        classes="square-tags__btn text-light pl-8 pr-6 py-3 rounded-full outline-none m__btn text-lg w-fit"
-        size="lg"
-        :style="`--background: linear-gradient(to right, ${currentBtnColor})`"
-      />
+    <div ref="header-cta-section">
+      <div class="flex justify-center items-center">
+        <Button
+          classes="square-tags__btn text-light pl-8 pr-6 pt-3 pb-2 rounded-full outline-none m__btn text-lg w-fit"
+          size="lg"
+          :style="`--background: linear-gradient(to right, ${currentBtnColor})`"
+        />
+      </div>
+      <div class="mt-2 flex justify-center items-center">
+        <div class="mt-2 text-sm">
+          {{
+            "No credit card needed &nbsp; ✦ &nbsp; Unlimited time on Free plan"
+          }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -75,6 +84,22 @@ export default {
   }
   &__btn {
     background-image: var(--background);
+  }
+  .cluster {
+    &--selected {
+      animation: breatheOut 0.3s linear;
+    }
+    @keyframes breatheOut {
+      from {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
   }
 }
 </style>
