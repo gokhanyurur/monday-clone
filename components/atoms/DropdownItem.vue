@@ -58,7 +58,7 @@ export default {
   },
   methods: {
     getImgUrl(icon) {
-      return require("@/assets/icons/" + icon);
+      return require("@/assets/img/icons/" + icon);
     },
   },
 };

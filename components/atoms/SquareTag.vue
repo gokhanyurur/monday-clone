@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     getImgUrl(imgSrc) {
-      return require("@/assets/squareTagsIcons/" + imgSrc);
+      return require("@/assets/img/square-tags-icons/" + imgSrc);
     },
     toggleCheck() {
       const tag = this.$refs["toggle-div"];

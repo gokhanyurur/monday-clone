@@ -28,7 +28,7 @@
       <div class="m__header__image__wrapper pt-8">
         <img
           class="m__header__image"
-          src="~/assets/header/header-img.png"
+          src="~/assets/img/header/header-img.png"
           alt=""
         />
       </div>
@@ -146,7 +146,7 @@ export default {
 <style scoped lang="scss">
 .m__header {
   min-height: 664px;
-  background: linear-gradient(rgb(0, 1, 51) 0%, rgb(21, 21, 88) 100%);
+  background: linear-gradient(rgb(0, 1, 51) 0%, rgb(12, 12, 90) 100%);
   &__desktop {
     display: none;
     @media (min-width: 1280px) {
