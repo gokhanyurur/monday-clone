@@ -11,10 +11,12 @@ export default {
 <style scoped lang="scss">
 .triangle {
   border-bottom: 13.9173vw solid rgb(255, 255, 255);
-
   position: absolute;
   z-index: 2;
   pointer-events: none;
+  @media (max-width: 1280px) {
+    display: none;
+  }
   &.top {
     width: 0;
     height: 0;
