@@ -1,6 +1,6 @@
 <template>
   <a href="/" target="_self">
-    <img class="app-logo" src="~/assets/logo.png" alt="" />
+    <img class="app-logo" src="~/assets/img/logo.png" alt="" />
   </a>
 </template>
 
