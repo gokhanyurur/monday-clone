@@ -43,7 +43,7 @@ export default {
   &:focus {
     background-color: #ffffff;
     &::placeholder {
-      color: #0b0b4a;
+      color: #6c6cff;
     }
   }
   &__wrapper {

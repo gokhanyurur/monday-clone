@@ -48,7 +48,7 @@
         <br />
         {{ "Work OS platform." }}
       </h2>
-      <div class="mt-8 flex justify-center items-center">
+      <div class="mt-8 flex justify-center items-center pb-6">
         <div class="form__wrapper">
           <MInput />
           <Button
