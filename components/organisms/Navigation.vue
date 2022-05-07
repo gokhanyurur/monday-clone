@@ -4,7 +4,7 @@
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2.1.2/dist/tailwind.min.css"
       rel="stylesheet"
     />
-    <div class="m__nav m__nav__desktop with-shadow">
+    <div ref="nav-desktop" class="m__nav m__nav__desktop">
       <div class="m__container flex">
         <Logo />
         <nav class="m__nav__wrapper">
@@ -81,7 +81,7 @@
         </nav>
       </div>
     </div>
-    <div class="m__nav m__nav__mobile">
+    <div ref="nav-mobile" class="m__nav m__nav__mobile">
       <div class="flex px-8">
         <Logo />
         <nav class="m__nav__wrapper flex grow justify-end">
@@ -174,6 +174,7 @@
 
 <script>
 import vClickOutside from "v-click-outside";
+import debounce from "debounce";
 import Logo from "@/components/atoms/Logo";
 import Button from "@/components/atoms/Button";
 import Dropdown from "@/components/molecules/Dropdown";
@@ -191,6 +192,9 @@ export default {
       mobileOpen: false,
       navMenuItems,
     };
+  },
+  mounted() {
+    window.addEventListener("scroll", debounce(this.onScroll, 200, false));
   },
   methods: {
     toggleMobileNav() {
@@ -242,6 +246,19 @@ export default {
           item.isOpened = false;
         }
       });
+    },
+    onScroll() {
+      if (process.client) {
+        const desktopNav = this.$refs["nav-desktop"];
+        const mobileNav = this.$refs["nav-mobile"];
+        if (window.scrollY > 0) {
+          desktopNav.classList.add("with-shadow");
+          mobileNav.classList.add("with-shadow");
+        } else {
+          desktopNav.classList.remove("with-shadow");
+          mobileNav.classList.remove("with-shadow");
+        }
+      }
     },
   },
 };
