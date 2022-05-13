@@ -1,27 +1,24 @@
 <template>
-  <div class="relative">
-    <SectionTriangle />
-    <div class="trust-badges m__container">
-      <h2 class="text-xl lg:text-2xl text-center font-normal mb-6">
-        {{ "Trusted by 152,000+ customers worldwide" }}
-      </h2>
-      <div class="trust-badges__desktop__container">
-        <div
-          v-for="(badge, index) in badges.desktopBrands"
-          :key="`trusted-by-${index}-desktop`"
-          class="trust-badges__img__wrapper"
-        >
-          <img :src="getImgUrl(badge.logo)" :alt="badge.title" />
-        </div>
+  <div class="trust-badges m__container">
+    <h2 class="text-xl lg:text-2xl text-center font-normal mb-6">
+      {{ "Trusted by 152,000+ customers worldwide" }}
+    </h2>
+    <div class="trust-badges__desktop__container">
+      <div
+        v-for="(badge, index) in badges.desktopBrands"
+        :key="`trusted-by-${index}-desktop`"
+        class="trust-badges__img__wrapper"
+      >
+        <img :src="getImgUrl(badge.logo)" :alt="badge.title" />
       </div>
-      <div class="trust-badges__mobile__container">
-        <div
-          v-for="(badge, index) in badges.mobileBrands"
-          :key="`trusted-by-${index}-mobile`"
-          class="trust-badges__img__wrapper__mobile"
-        >
-          <img :src="getImgUrl(badge.logo)" :alt="badge.title" />
-        </div>
+    </div>
+    <div class="trust-badges__mobile__container">
+      <div
+        v-for="(badge, index) in badges.mobileBrands"
+        :key="`trusted-by-${index}-mobile`"
+        class="trust-badges__img__wrapper__mobile"
+      >
+        <img :src="getImgUrl(badge.logo)" :alt="badge.title" />
       </div>
     </div>
   </div>
@@ -29,11 +26,9 @@
 
 <script>
 import { trustedBy } from "@/data/trustedBy";
-import SectionTriangle from "@/components/atoms/SectionTriangle";
 
 export default {
   name: "TrustBadges",
-  components: { SectionTriangle },
   data() {
     return {
       badges: trustedBy,
