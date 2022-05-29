@@ -4,7 +4,12 @@
     <div class="pb-5 mobile-video">
       <video
         preload="auto"
-        :poster="$helpers.getImgUrl('mobile_hero_videolight_small__poster.png', '/video-posters')"
+        :poster="
+          $helpers.getImgUrl(
+            'mobile_hero_videolight_small__poster.png',
+            '/video-posters'
+          )
+        "
         aria-label='"Teams projects" boards on mobile and desktop'
         style="width: 100%; height: 100%"
         autoplay
