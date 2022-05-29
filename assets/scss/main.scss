@@ -4,8 +4,15 @@
   url(~assets/fonts/sofiapro-light.otf) format("truetype");
 }
 
+@font-face {
+  font-family: "sofia-pro";
+  src: local("sofia-pro"),
+  url(~assets/fonts/sofiapro-bold.ttf) format("truetype");
+  font-weight: bold;
+}
+
 html {
-  font-family: "sofia-pro" !important;
+  font-family: "sofia-pro", sans-serif !important;
   color: get-color('dark');
 }
 body {
@@ -120,6 +127,9 @@ a {
 }
 
 .text-4xl-custom {
-  font-size: 40px;
-  line-height: 48px;
+  font-size: 32px;
+  @include media-breakpoint-up('lg') {
+    font-size: 40px;
+    line-height: 48px;
+  }
 }

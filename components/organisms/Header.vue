@@ -217,7 +217,6 @@ export default {
     h1 {
       font-size: 80px;
       line-height: 85px;
-      font-weight: 600;
       background: linear-gradient(360deg, #ffffff 53.95%, #0b0b4a 207.37%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
