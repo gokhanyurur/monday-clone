@@ -17,7 +17,12 @@
         </svg>
       </div>
       <div v-if="imgSrc" class="star-wrapper__icon">
-        <img :src="this.$helpers.getImgUrl(imgSrc, '/square-tags-icons')" width="40" height="40" alt="" />
+        <img
+          :src="$helpers.getImgUrl(imgSrc, '/square-tags-icons')"
+          width="40"
+          height="40"
+          alt=""
+        />
       </div>
       <div class="pt-1 text-center star-wrapper__title">{{ title }}</div>
     </div>
