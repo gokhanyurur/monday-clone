@@ -32,12 +32,11 @@ import Vue from "vue";
 import Header from "~/components/organisms/Header.vue";
 import TrustBadges from "~/components/molecules/TrustBadges.vue";
 import SectionTriangle from "~/components/atoms/SectionTriangle.vue";
-import Button from "~/components/atoms/Button.vue";
 import WorkOs from "~/components/molecules/WorkOs.vue";
 
 export default Vue.extend({
   name: "IndexPage",
-  components: { Button, TrustBadges, Header, SectionTriangle, WorkOs },
+  components: { TrustBadges, Header, SectionTriangle, WorkOs },
 });
 </script>
 <style scoped lang="scss">
