@@ -41,14 +41,13 @@
     </div>
     <div class="m__container">
       <div class="grid-container">
-        <div class="item item-1">
+        <div class="item item-1 timeline">
           <div class="asset-inner">
             <div class="video-component">
               <video
                 preload="auto"
                 :poster="getVideoPoster('timeline_column.png')"
                 style="width: 100%; height: 100%"
-                autoplay
                 muted
               >
                 <source :src="getVideo('timeline_column.mp4')" />
@@ -56,14 +55,13 @@
             </div>
           </div>
         </div>
-        <div class="item item-2">
+        <div class="item item-2 status">
           <div class="asset-inner">
             <div class="video-component">
               <video
                 preload="auto"
                 :poster="getVideoPoster('status_column.png')"
                 style="width: 100%; height: 100%"
-                autoplay
                 muted
               >
                 <source :src="getVideo('status_column.mp4')" />
@@ -71,14 +69,13 @@
             </div>
           </div>
         </div>
-        <div class="item item-3">
+        <div class="item item-3 battery">
           <div class="asset-inner">
             <div class="video-component">
               <video
                 preload="auto"
                 :poster="getVideoPoster('battery_column.png')"
                 style="width: 100%; height: 100%"
-                autoplay
                 muted
               >
                 <source :src="getVideo('battery_column.mp4')" />
@@ -86,14 +83,13 @@
             </div>
           </div>
         </div>
-        <div class="item item-4">
+        <div class="item item-4 integration">
           <div class="asset-inner">
             <div class="video-component">
               <video
                 preload="auto"
                 :poster="getVideoPoster('integration_column.png')"
                 style="width: 100%; height: 100%"
-                autoplay
                 muted
               >
                 <source :src="getVideo('integration_column.mp4')" />
@@ -101,14 +97,13 @@
             </div>
           </div>
         </div>
-        <div class="item item-5">
+        <div class="item item-5 pie">
           <div class="asset-inner">
             <div class="video-component">
               <video
                 preload="auto"
                 :poster="getVideoPoster('pie_column.png')"
                 style="width: 100%; height: 100%"
-                autoplay
                 muted
               >
                 <source :src="getVideo('pie_column.mp4')" />
@@ -116,14 +111,13 @@
             </div>
           </div>
         </div>
-        <div class="item item-6">
+        <div class="item item-6 mobileapp">
           <div class="asset-inner">
             <div class="video-component">
               <video
                 preload="auto"
                 :poster="getVideoPoster('mobileapp_column.png')"
                 style="width: 100%; height: 100%"
-                autoplay
                 muted
               >
                 <source :src="getVideo('mobileapp_column.mp4')" />
@@ -131,14 +125,13 @@
             </div>
           </div>
         </div>
-        <div class="item item-7">
+        <div class="item item-7 automation">
           <div class="asset-inner">
             <div class="video-component">
               <video
                 preload="auto"
                 :poster="getVideoPoster('automation_column.png')"
                 style="width: 100%; height: 100%"
-                autoplay
                 muted
               >
                 <source :src="getVideo('automation_column.mp4')" />
@@ -146,18 +139,42 @@
             </div>
           </div>
         </div>
-        <div class="item item-8">
+        <div class="item item-8 talk">
           <div class="asset-inner">
             <div class="video-component">
               <video
                 preload="auto"
                 :poster="getVideoPoster('talk_column.png')"
                 style="width: 100%; height: 100%"
-                autoplay
                 muted
               >
                 <source :src="getVideo('talk_column.mp4')" />
               </video>
+            </div>
+          </div>
+        </div>
+        <div class="item item-9 dashboard">
+          <div class="window-mask">
+            <div class="window-header">
+              <div class="circle-wrapper">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+              </div>
+            </div>
+            <div class="window-content">
+              <div class="asset-inner">
+                <div class="video-component">
+                  <video
+                    preload="auto"
+                    :poster="getVideoPoster('dashboard_column.png')"
+                    style="width: 100%; height: 100%"
+                    muted
+                  >
+                    <source :src="getVideo('dashboard_column.mp4')" />
+                  </video>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -184,6 +201,40 @@ export default Vue.extend({
       return require("@/assets/videos/" + fileName);
     },
   },
+  mounted() {
+    var observer = new IntersectionObserver(function(entries) {
+	  if(entries[0].isIntersecting === true)
+      setTimeout(() => {
+        (document.querySelector('.timeline video') as HTMLVideoElement).play();
+      }, 500);
+      setTimeout(() => {
+        (document.querySelector('.status video') as HTMLVideoElement).play();
+      }, 2000);
+      setTimeout(() => {
+        (document.querySelector('.dashboard video') as HTMLVideoElement).play();
+      }, 3000);
+      setTimeout(() => {
+        (document.querySelector('.integration video') as HTMLVideoElement).play();
+      }, 4500);
+      setTimeout(() => {
+        (document.querySelector('.automation video') as HTMLVideoElement).play();
+      }, 6000);
+      setTimeout(() => {
+        (document.querySelector('.talk video') as HTMLVideoElement).play();
+      }, 7500);
+      setTimeout(() => {
+        (document.querySelector('.mobileapp video') as HTMLVideoElement).play();
+      }, 9000);
+      setTimeout(() => {
+        (document.querySelector('.battery video') as HTMLVideoElement).play();
+      }, 10000);
+      setTimeout(() => {
+        (document.querySelector('.pie video') as HTMLVideoElement).play();
+      }, 11000);
+    }, { threshold: [1] });
+
+    observer.observe(document.querySelector('.timeline video') as HTMLElement);
+  }
 });
 </script>
 <style scoped lang="scss">
@@ -282,6 +333,43 @@ export default Vue.extend({
   }
   .item-8 {
     grid-area: comment;
+  }
+  .item-9 {
+    grid-area: dashboard;
+    .window-mask {
+      display: flex;
+      flex-direction: column;
+      filter: drop-shadow(0px 8px 24px rgba(29, 140, 242, 0.5));
+      .window-header {
+        display: flex;
+        height: 15px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        background: rgba(255,255,255,0.4);
+        .circle-wrapper {
+          display: flex;
+          align-items: center;
+          margin-left: 8px;
+          .circle {
+            background: #ffffff;
+            height: 5px;
+            width: 5px;
+            border-radius: 50%;
+            margin-right: 4px;
+          }
+        }
+      }
+      .window-content {
+        .asset-inner {
+          .video-component {
+            video {
+              border-top-left-radius: 0 !important;
+              border-top-right-radius: 0 !important;
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>
