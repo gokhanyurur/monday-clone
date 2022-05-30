@@ -4,17 +4,26 @@
     <div class="pb-5 mobile-video">
       <video
         preload="auto"
-        :poster="getVideoPoster()"
+        :poster="
+          getImgUrl(
+            'mobile_hero_videolight_small__poster.png',
+            '/video-posters'
+          )
+        "
         aria-label='"Teams projects" boards on mobile and desktop'
         style="width: 100%; height: 100%"
         autoplay
         muted
         loop
       >
-        <source :src="getVideo()" />
+        <source :src="getVideo('mobile_hero_videolight_small.mp4')" />
       </video>
     </div>
-    <TrustBadges />
+    <div class="relative">
+      <SectionTriangle />
+      <TrustBadges />
+    </div>
+    <WorkOs />
   </div>
 </template>
 
@@ -22,17 +31,16 @@
 import Vue from "vue";
 import Header from "~/components/organisms/Header.vue";
 import TrustBadges from "~/components/molecules/TrustBadges.vue";
+import SectionTriangle from "~/components/atoms/SectionTriangle.vue";
+import WorkOs from "~/components/molecules/WorkOs.vue";
+import { getVideo, getImgUrl } from "@/utils/helpers";
 
 export default Vue.extend({
   name: "IndexPage",
-  components: { TrustBadges, Header },
+  components: { TrustBadges, Header, SectionTriangle, WorkOs },
   methods: {
-    getVideoPoster() {
-      return require("@/assets/img/video-posters/mobile_hero_videolight_small__poster.png");
-    },
-    getVideo() {
-      return require("@/assets/videos/mobile_hero_videolight_small.mp4");
-    },
+    getVideo,
+    getImgUrl,
   },
 });
 </script>

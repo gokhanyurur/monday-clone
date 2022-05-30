@@ -20,7 +20,7 @@ export default {
   &.top {
     width: 0;
     height: 0;
-    margin-top: -13.95vw;
+    margin-top: -13.9vw;
     border-right: 100vw solid transparent;
   }
 }
