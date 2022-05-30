@@ -5,7 +5,7 @@
       <video
         preload="auto"
         :poster="
-          $helpers.getImgUrl(
+          getImgUrl(
             'mobile_hero_videolight_small__poster.png',
             '/video-posters'
           )
@@ -16,7 +16,7 @@
         muted
         loop
       >
-        <source :src="$helpers.getVideo('mobile_hero_videolight_small.mp4')" />
+        <source :src="getVideo('mobile_hero_videolight_small.mp4')" />
       </video>
     </div>
     <div class="relative">
@@ -33,10 +33,15 @@ import Header from "~/components/organisms/Header.vue";
 import TrustBadges from "~/components/molecules/TrustBadges.vue";
 import SectionTriangle from "~/components/atoms/SectionTriangle.vue";
 import WorkOs from "~/components/molecules/WorkOs.vue";
+import { getVideo, getImgUrl } from "@/utils/helpers";
 
 export default Vue.extend({
   name: "IndexPage",
   components: { TrustBadges, Header, SectionTriangle, WorkOs },
+  methods: {
+    getVideo,
+    getImgUrl,
+  },
 });
 </script>
 <style scoped lang="scss">

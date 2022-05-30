@@ -18,7 +18,7 @@
       </div>
       <div v-if="imgSrc" class="star-wrapper__icon">
         <img
-          :src="$helpers.getImgUrl(imgSrc, '/square-tags-icons')"
+          :src="getImgUrl(imgSrc, '/square-tags-icons')"
           width="40"
           height="40"
           alt=""
@@ -30,6 +30,8 @@
 </template>
 
 <script>
+import { getImgUrl } from "@/utils/helpers";
+
 export default {
   name: "SquareTag",
   props: {
@@ -47,6 +49,7 @@ export default {
     },
   },
   methods: {
+    getImgUrl,
     toggleCheck() {
       const tag = this.$refs["toggle-div"];
       const ctaSection = this.$parent.$refs["header-cta-section"];

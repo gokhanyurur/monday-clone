@@ -30,13 +30,11 @@
               <div class="video-component">
                 <video
                   preload="auto"
-                  :poster="
-                    $helpers.getImgUrl('timeline_column.png', '/video-posters')
-                  "
+                  :poster="getImgUrl('timeline_column.png', '/video-posters')"
                   style="width: 100%; height: 100%"
                   muted
                 >
-                  <source :src="$helpers.getVideo('timeline_column.mp4')" />
+                  <source :src="getVideo('timeline_column.mp4')" />
                 </video>
               </div>
             </div>
@@ -46,13 +44,11 @@
               <div class="video-component">
                 <video
                   preload="auto"
-                  :poster="
-                    $helpers.getImgUrl('status_column.png', '/video-posters')
-                  "
+                  :poster="getImgUrl('status_column.png', '/video-posters')"
                   style="width: 100%; height: 100%"
                   muted
                 >
-                  <source :src="$helpers.getVideo('status_column.mp4')" />
+                  <source :src="getVideo('status_column.mp4')" />
                 </video>
               </div>
             </div>
@@ -62,13 +58,11 @@
               <div class="video-component">
                 <video
                   preload="auto"
-                  :poster="
-                    $helpers.getImgUrl('battery_column.png', '/video-posters')
-                  "
+                  :poster="getImgUrl('battery_column.png', '/video-posters')"
                   style="width: 100%; height: 100%"
                   muted
                 >
-                  <source :src="$helpers.getVideo('battery_column.mp4')" />
+                  <source :src="getVideo('battery_column.mp4')" />
                 </video>
               </div>
             </div>
@@ -79,15 +73,12 @@
                 <video
                   preload="auto"
                   :poster="
-                    $helpers.getImgUrl(
-                      'integration_column.png',
-                      '/video-posters'
-                    )
+                    getImgUrl('integration_column.png', '/video-posters')
                   "
                   style="width: 100%; height: 100%"
                   muted
                 >
-                  <source :src="$helpers.getVideo('integration_column.mp4')" />
+                  <source :src="getVideo('integration_column.mp4')" />
                 </video>
               </div>
             </div>
@@ -97,13 +88,11 @@
               <div class="video-component">
                 <video
                   preload="auto"
-                  :poster="
-                    $helpers.getImgUrl('pie_column.png', '/video-posters')
-                  "
+                  :poster="getImgUrl('pie_column.png', '/video-posters')"
                   style="width: 100%; height: 100%"
                   muted
                 >
-                  <source :src="$helpers.getVideo('pie_column.mp4')" />
+                  <source :src="getVideo('pie_column.mp4')" />
                 </video>
               </div>
             </div>
@@ -113,13 +102,11 @@
               <div class="video-component">
                 <video
                   preload="auto"
-                  :poster="
-                    $helpers.getImgUrl('mobileapp_column.png', '/video-posters')
-                  "
+                  :poster="getImgUrl('mobileapp_column.png', '/video-posters')"
                   style="width: 100%; height: 100%"
                   muted
                 >
-                  <source :src="$helpers.getVideo('mobileapp_column.mp4')" />
+                  <source :src="getVideo('mobileapp_column.mp4')" />
                 </video>
               </div>
             </div>
@@ -129,16 +116,11 @@
               <div class="video-component">
                 <video
                   preload="auto"
-                  :poster="
-                    $helpers.getImgUrl(
-                      'automation_column.png',
-                      '/video-posters'
-                    )
-                  "
+                  :poster="getImgUrl('automation_column.png', '/video-posters')"
                   style="width: 100%; height: 100%"
                   muted
                 >
-                  <source :src="$helpers.getVideo('automation_column.mp4')" />
+                  <source :src="getVideo('automation_column.mp4')" />
                 </video>
               </div>
             </div>
@@ -148,13 +130,11 @@
               <div class="video-component">
                 <video
                   preload="auto"
-                  :poster="
-                    $helpers.getImgUrl('talk_column.png', '/video-posters')
-                  "
+                  :poster="getImgUrl('talk_column.png', '/video-posters')"
                   style="width: 100%; height: 100%"
                   muted
                 >
-                  <source :src="$helpers.getVideo('talk_column.mp4')" />
+                  <source :src="getVideo('talk_column.mp4')" />
                 </video>
               </div>
             </div>
@@ -174,17 +154,12 @@
                     <video
                       preload="auto"
                       :poster="
-                        $helpers.getImgUrl(
-                          'dashboard_column.png',
-                          '/video-posters'
-                        )
+                        getImgUrl('dashboard_column.png', '/video-posters')
                       "
                       style="width: 100%; height: 100%"
                       muted
                     >
-                      <source
-                        :src="$helpers.getVideo('dashboard_column.mp4')"
-                      />
+                      <source :src="getVideo('dashboard_column.mp4')" />
                     </video>
                   </div>
                 </div>
@@ -196,7 +171,7 @@
     </div>
     <div class="m__container work-os-mobile">
       <img
-        :src="$helpers.getImgUrl('workos-mobile-img.png')"
+        :src="getImgUrl('workos-mobile-img.png')"
         width="100%"
         height="auto"
         alt="WorkOs Mobile Image"
@@ -208,6 +183,7 @@
 <script lang="ts">
 import Vue from "vue";
 import Button from "~/components/atoms/Button.vue";
+import { getImgUrl, getVideo } from "@/utils/helpers";
 
 export default Vue.extend({
   name: "WorkOS",
@@ -258,6 +234,10 @@ export default Vue.extend({
     );
 
     observer.observe(document.querySelector(".timeline video") as HTMLElement);
+  },
+  methods: {
+    getImgUrl,
+    getVideo,
   },
 });
 </script>
