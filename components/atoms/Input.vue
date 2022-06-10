@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "MInput",
+  name: "Input",
   props: {
     classes: {
       type: String,

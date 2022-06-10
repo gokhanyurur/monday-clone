@@ -51,5 +51,8 @@
       fill: map-get($colors, $color);
     }
   }
+  .border-bottom-#{$color} {
+    border-bottom-color: map-get($colors, $color);
+  }
 }
 

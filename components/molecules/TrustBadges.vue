@@ -9,7 +9,7 @@
         :key="`trusted-by-${index}-desktop`"
         class="trust-badges__img__wrapper"
       >
-        <img :src="getImgUrl(badge.logo)" :alt="badge.title" />
+        <img :src="getImgUrl(badge.logo, '/trust-badges')" :alt="badge.title" />
       </div>
     </div>
     <div class="trust-badges__mobile__container">
@@ -18,7 +18,7 @@
         :key="`trusted-by-${index}-mobile`"
         class="trust-badges__img__wrapper__mobile"
       >
-        <img :src="getImgUrl(badge.logo)" :alt="badge.title" />
+        <img :src="getImgUrl(badge.logo, '/trust-badges')" :alt="badge.title" />
       </div>
     </div>
   </div>
@@ -26,6 +26,7 @@
 
 <script>
 import { trustedBy } from "@/data/trustedBy";
+import { getImgUrl } from "~/utils/helpers";
 
 export default {
   name: "TrustBadges",
@@ -35,9 +36,7 @@ export default {
     };
   },
   methods: {
-    getImgUrl(logo) {
-      return require("@/assets/img/trust-badges/" + logo);
-    },
+    getImgUrl
   },
 };
 </script>

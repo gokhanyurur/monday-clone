@@ -3,7 +3,7 @@
     <div v-if="icon !== null" class="mr-4">
       <img
         class="m__dropdown__section__svg-icon"
-        :src="getImgUrl(icon)"
+        :src="getImgUrl(icon, '/icons')"
         :alt="title"
         width="30px"
         height="30px"
@@ -32,6 +32,8 @@
 </template>
 
 <script>
+import { getImgUrl } from "~/utils/helpers";
+
 export default {
   name: "DropdownItem",
   props: {
@@ -57,9 +59,7 @@ export default {
     },
   },
   methods: {
-    getImgUrl(icon) {
-      return require("@/assets/img/icons/" + icon);
-    },
+    getImgUrl,
   },
 };
 </script>

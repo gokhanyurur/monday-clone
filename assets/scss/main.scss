@@ -18,6 +18,7 @@ html {
 body {
   line-height: 1.2 !important;
   overflow-x: hidden;
+  font-size: 16px;
 }
 
 a {
@@ -132,4 +133,15 @@ a {
     font-size: 40px;
     line-height: 48px;
   }
+}
+
+.core-title {
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 48px;
+  word-break: break-word;
+}
+
+b {
+  font-weight: bold !important;
 }

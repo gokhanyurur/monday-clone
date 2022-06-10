@@ -1,16 +1,23 @@
 <template>
-  <div class="triangle top"></div>
+  <div class="triangle top" :class="`border-bottom-${color}`"></div>
 </template>
 
 <script>
 export default {
   name: "SectionTriangle",
+  props: {
+    color: {
+      type: String,
+      default: 'light'
+    }
+  }
 };
 </script>
 
 <style scoped lang="scss">
 .triangle {
-  border-bottom: 13.9173vw solid rgb(255, 255, 255);
+  border-bottom-style: solid;
+  border-bottom-width: 13.9173vw;
   position: absolute;
   z-index: 2;
   pointer-events: none;
