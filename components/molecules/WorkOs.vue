@@ -245,13 +245,13 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .work-os-desktop {
   display: none;
-  @media (min-width: 1280px) {
+  @include media-breakpoint-up("lg") {
     display: block;
   }
 }
 .work-os-mobile {
   display: block;
-  @media (min-width: 1280px) {
+  @include media-breakpoint-up("lg") {
     display: none;
   }
 }
@@ -300,7 +300,7 @@ export default Vue.extend({
     filter: drop-shadow(-11px 14px 35px rgba(29, 140, 242, 0.2));
     border-radius: 8px;
     z-index: -1;
-    background-color: #fff;
+    background-color: get-color("light");
     display: flex;
     justify-content: center;
     align-items: center;
@@ -337,7 +337,7 @@ export default Vue.extend({
   .item-6 {
     grid-area: phone;
     padding: 7px;
-    background-color: #fff;
+    background-color: get-color("light");
     border-radius: 24px;
     height: fit-content;
     .asset-inner {
@@ -372,7 +372,7 @@ export default Vue.extend({
           align-items: center;
           margin-left: 8px;
           .circle {
-            background: #ffffff;
+            background: get-color("light");
             height: 5px;
             width: 5px;
             border-radius: 50%;

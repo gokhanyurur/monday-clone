@@ -21,7 +21,7 @@ export default {
   position: absolute;
   z-index: 2;
   pointer-events: none;
-  @media (max-width: 1280px) {
+  @include media-breakpoint-down("lg") {
     display: none;
   }
   &.top {

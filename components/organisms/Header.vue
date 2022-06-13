@@ -172,13 +172,13 @@ export default {
   background: linear-gradient(rgb(0, 1, 51) 0%, rgb(12, 12, 90) 100%);
   &__desktop {
     display: none;
-    @media (min-width: 1280px) {
+    @include media-breakpoint-up("lg") {
       display: block;
     }
   }
   &__mobile {
     display: block;
-    @media (min-width: 1280px) {
+    @include media-breakpoint-up("lg") {
       display: none;
     }
     .form {
@@ -243,6 +243,7 @@ export default {
       background: linear-gradient(360deg, #ffffff 53.95%, #0b0b4a 207.37%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     h2 {
       font-size: 24px;
@@ -253,8 +254,8 @@ export default {
   &__mobile {
     padding-top: 24px;
     display: block;
-    background-color: #fff;
-    @media (min-width: 1280px) {
+    background-color: get-color("light");
+    @include media-breakpoint-up("lg") {
       display: none;
     }
     h1 {

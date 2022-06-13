@@ -10,7 +10,11 @@
           >
             <h2 class="core-title mb-4" v-html="item.title" />
             <p class="paragraph-body">{{ item.description }}</p>
-            <Button v-if="item.button" size="base" classes="scroll-parallax__feedback-btn rounded-full outline-none m__btn" />
+            <Button
+              v-if="item.button"
+              size="base"
+              classes="scroll-parallax__feedback-btn rounded-full outline-none m__btn"
+            />
             <div class="scroll-parallax__feedback-wrapper">
               <img
                 class="scroll-parallax__feedback-image"
@@ -38,58 +42,64 @@
 </template>
 
 <script>
-import { getImgUrl } from "~/utils/helpers";
 import Button from "../atoms/Button.vue";
+import { getImgUrl } from "~/utils/helpers";
 
 export default {
-    name: "ScrollParallax",
-    data() {
-        return {
-            paragraphs: [
-                {
-                    title: "Streamline your work for <b>maximum productivity</b>",
-                    description: "Centralize all your work, processes, tools, and files into one Work OS. Connect teams, bridge silos, and maintain one source of truth across your organization.",
-                    feedback: {
-                        imgPath: "jane.png",
-                        comment: "“We use monday.com for a plethora of use cases, the opportunities this platform provides are limitless.“",
-                        name: "Jane Tham",
-                        position: "VP of Collaboration Technologies",
-                        company: "Universal Music Group",
-                    },
-                },
-                {
-                    title: "Bring teams together to <b>drive business impact</b>",
-                    description: "Collaborate effectively organization-wide to get a clear picture of all your work. Stay in the loop with easy-to-use automations and real-time notifications.",
-                    feedback: {
-                        imgPath: "sarah.png",
-                        comment: "“Since adopting monday.com, our global marketing department has seen a 40% improvement in cross-team collaboration.“",
-                        name: "Sarah Pharr",
-                        position: "AVP Marketing",
-                        company: "Genpact",
-                    },
-                },
-                {
-                    title: "Stay on track to <b>reach your goals, faster</b>",
-                    description: "Get a high-level overview of your organization with customizable dashboards. Make confident decisions and easily scale workflows for your evolving needs.",
-                    button: {
-                        label: "Get Started",
-                        url: "#",
-                    },
-                    feedback: {
-                        imgPath: "baptiste.png",
-                        comment: "“monday.com allows banks to be synchronized between the top-level management figures and local KPIs.“",
-                        name: "Baptiste Ancey",
-                        position: "Head of Innovation",
-                        company: "Indosuez Wealth Management",
-                    },
-                },
-            ],
-        };
-    },
-    methods: {
-        getImgUrl,
-    },
-    components: { Button }
+  name: "ScrollParallax",
+  components: { Button },
+  data() {
+    return {
+      paragraphs: [
+        {
+          title: "Streamline your work for <b>maximum productivity</b>",
+          description:
+            "Centralize all your work, processes, tools, and files into one Work OS. Connect teams, bridge silos, and maintain one source of truth across your organization.",
+          feedback: {
+            imgPath: "jane.png",
+            comment:
+              "“We use monday.com for a plethora of use cases, the opportunities this platform provides are limitless.“",
+            name: "Jane Tham",
+            position: "VP of Collaboration Technologies",
+            company: "Universal Music Group",
+          },
+        },
+        {
+          title: "Bring teams together to <b>drive business impact</b>",
+          description:
+            "Collaborate effectively organization-wide to get a clear picture of all your work. Stay in the loop with easy-to-use automations and real-time notifications.",
+          feedback: {
+            imgPath: "sarah.png",
+            comment:
+              "“Since adopting monday.com, our global marketing department has seen a 40% improvement in cross-team collaboration.“",
+            name: "Sarah Pharr",
+            position: "AVP Marketing",
+            company: "Genpact",
+          },
+        },
+        {
+          title: "Stay on track to <b>reach your goals, faster</b>",
+          description:
+            "Get a high-level overview of your organization with customizable dashboards. Make confident decisions and easily scale workflows for your evolving needs.",
+          button: {
+            label: "Get Started",
+            url: "#",
+          },
+          feedback: {
+            imgPath: "baptiste.png",
+            comment:
+              "“monday.com allows banks to be synchronized between the top-level management figures and local KPIs.“",
+            name: "Baptiste Ancey",
+            position: "Head of Innovation",
+            company: "Indosuez Wealth Management",
+          },
+        },
+      ],
+    };
+  },
+  methods: {
+    getImgUrl,
+  },
 };
 </script>
 
@@ -117,9 +127,9 @@ export default {
     }
   }
   &__feedback-btn {
-      margin-top: 32px;
-      border: 1px solid #fff;
-      padding: 13px 20px 12px 29px;
+    margin-top: 32px;
+    border: 1px solid #fff;
+    padding: 13px 20px 12px 29px;
   }
   &__feedback-wrapper {
     margin-top: 150px;
@@ -131,8 +141,6 @@ export default {
     height: 72px;
   }
   &__feedback-body-wrapper {
-    .main {
-    }
     .person {
       margin-top: 8px;
       .text {

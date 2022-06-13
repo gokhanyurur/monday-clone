@@ -30,7 +30,7 @@ export default {
   margin: 16px 0;
   &__line {
     flex-grow: 1;
-    border-color: #c5c7d0;
+    border-color: get-color("light-gray");
     border-top-width: 0.5px;
     border-bottom-width: 0.5px;
     border-style: solid;
@@ -42,7 +42,7 @@ export default {
     padding-right: 16px;
     font-size: 14px;
     line-height: 24px;
-    color: #676879;
+    color: get-color("m-gray");
   }
 }
 </style>

@@ -68,7 +68,7 @@ export default {
 .dropdown-item-content {
   max-width: 235px;
   &__title {
-    @media (min-width: 1280px) {
+    @include media-breakpoint-up("lg") {
       font-weight: 700;
     }
     &__wrapper {

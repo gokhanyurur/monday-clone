@@ -50,7 +50,7 @@ export default {
       rgba(245, 246, 248, 0) 67.54%
     );
   }
-  @media (min-width: 1280px) {
+  @include media-breakpoint-up("lg") {
     padding-bottom: 90px;
   }
   &__desktop {
@@ -59,10 +59,10 @@ export default {
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      @media (max-width: 768px) {
+      @include media-breakpoint-down("md") {
         display: none;
       }
-      @media (max-width: 1600px) {
+      @include media-breakpoint-down("xl") {
         max-width: 768px;
         margin: auto;
       }
@@ -70,12 +70,12 @@ export default {
   }
   &__mobile {
     &__container {
-      display: flex;
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      @media (min-width: 769px) {
-        display: none;
+      display: none;
+      @include media-breakpoint-down("md") {
+        display: flex;
       }
     }
   }
