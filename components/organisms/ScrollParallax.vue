@@ -1,7 +1,7 @@
 <template>
   <div class="scroll-parallax bg-darkest-blue text-light">
     <div class="m__container">
-      <div class="flex">
+      <div class="flex scroll-parallax__wrapper">
         <div class="paragraphs">
           <div
             v-for="(item, index) in paragraphs"
@@ -35,7 +35,13 @@
             </div>
           </div>
         </div>
-        <div class="parallax">{{ "Parallax" }}</div>
+        <div class="parallax">
+          <div class="controller">
+            <div class="parallax-galaxy">
+              
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -105,6 +111,7 @@ export default {
 
 <style scoped lang="scss">
 .scroll-parallax {
+
   .m__container {
     padding-left: 96px;
     padding-right: 96px;
@@ -114,6 +121,10 @@ export default {
     &:not(:first-child) {
       margin-top: 150px;
     }
+  }
+  &__wrapper {
+    padding-top: 128px;
+    padding-bottom: 128px;
   }
   .paragraphs,
   .parallax {
