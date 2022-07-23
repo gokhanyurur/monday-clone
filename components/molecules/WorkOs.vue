@@ -191,7 +191,7 @@ export default Vue.extend({
   mounted() {
     const observer = new IntersectionObserver(
       function (entries) {
-        if (entries[0].isIntersecting === true)
+        if (entries[0].isIntersecting)
           setTimeout(() => {
             (
               document.querySelector(".timeline video") as HTMLVideoElement

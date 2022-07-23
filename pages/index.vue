@@ -7,7 +7,7 @@
     </div>
     <WorkOs />
     <div class="relative">
-      <SectionTriangle color="darkest-blue"/>
+      <SectionTriangle color="darkest-blue" />
       <ScrollParallax />
     </div>
   </div>

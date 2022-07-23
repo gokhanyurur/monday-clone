@@ -4,7 +4,7 @@
       <div class="flex scroll-parallax__wrapper">
         <div class="paragraphs">
           <div
-            v-for="(item, index) in paragraphs"
+            v-for="item in paragraphs"
             :key="item.title"
             class="scroll-parallax__item-wrapper"
           >
@@ -38,8 +38,44 @@
         <div class="parallax">
           <div class="controller">
             <div class="parallax-galaxy">
-              
+              <div class="galaxy-container">
+                <div class="spin-container">
+                  <div class="stars">
+                    <!-- TODO create twinkle stars component with number of stars prop -->
+                  </div>
+                  <template v-for="(element, index) in galaxyData">
+                    <div
+                      :key="`galaxy-circle-container-${index}`"
+                      :class="`circle-container ${element.circleSize}-circle`"
+                    ></div>
+                    <div
+                      :key="`galaxy-circle-items-${index}`"
+                      :class="`items-container ${element.circleSize}-circle`"
+                    >
+                      <div
+                        v-for="(circleItem, indexC) in element.circleItems"
+                        :key="`circle-item-${indexC}`"
+                        :class="`item ${circleItem.alt.toLowerCase()} ${
+                          circleItem.additionalClass
+                            ? circleItem.additionalClass
+                            : ''
+                        }`"
+                      >
+                        <img
+                          :src="
+                            getImgUrl(circleItem.imgPath, '/parallax/galaxy')
+                          "
+                          :alt="circleItem.alt"
+                          width="63px"
+                          height="68px"
+                        />
+                      </div>
+                    </div>
+                  </template>
+                </div>
+              </div>
             </div>
+            <!-- TODO other animations comes here -->
           </div>
         </div>
       </div>
@@ -50,57 +86,15 @@
 <script>
 import Button from "../atoms/Button.vue";
 import { getImgUrl } from "~/utils/helpers";
+import { scrollParallaxData } from "@/data/scrollParallax";
 
 export default {
   name: "ScrollParallax",
   components: { Button },
   data() {
     return {
-      paragraphs: [
-        {
-          title: "Streamline your work for <b>maximum productivity</b>",
-          description:
-            "Centralize all your work, processes, tools, and files into one Work OS. Connect teams, bridge silos, and maintain one source of truth across your organization.",
-          feedback: {
-            imgPath: "jane.png",
-            comment:
-              "“We use monday.com for a plethora of use cases, the opportunities this platform provides are limitless.“",
-            name: "Jane Tham",
-            position: "VP of Collaboration Technologies",
-            company: "Universal Music Group",
-          },
-        },
-        {
-          title: "Bring teams together to <b>drive business impact</b>",
-          description:
-            "Collaborate effectively organization-wide to get a clear picture of all your work. Stay in the loop with easy-to-use automations and real-time notifications.",
-          feedback: {
-            imgPath: "sarah.png",
-            comment:
-              "“Since adopting monday.com, our global marketing department has seen a 40% improvement in cross-team collaboration.“",
-            name: "Sarah Pharr",
-            position: "AVP Marketing",
-            company: "Genpact",
-          },
-        },
-        {
-          title: "Stay on track to <b>reach your goals, faster</b>",
-          description:
-            "Get a high-level overview of your organization with customizable dashboards. Make confident decisions and easily scale workflows for your evolving needs.",
-          button: {
-            label: "Get Started",
-            url: "#",
-          },
-          feedback: {
-            imgPath: "baptiste.png",
-            comment:
-              "“monday.com allows banks to be synchronized between the top-level management figures and local KPIs.“",
-            name: "Baptiste Ancey",
-            position: "Head of Innovation",
-            company: "Indosuez Wealth Management",
-          },
-        },
-      ],
+      paragraphs: scrollParallaxData.paragraphs,
+      galaxyData: scrollParallaxData.galaxy,
     };
   },
   methods: {
@@ -110,8 +104,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@mixin calculate-delay($n, $d, $nonSymmetric: false) {
+  @for $i from 1 through $n {
+    &:nth-child(#{$i}) {
+      @if $nonSymmetric == true {
+        animation-delay: calc(#{($i - 1) * -1} * #{$d} / #{$n * $i}) !important;
+      } @else {
+        animation-delay: calc(#{($i - 1) * -1} * #{$d} / #{$n}) !important;
+      }
+    }
+  }
+}
 .scroll-parallax {
-
   .m__container {
     padding-left: 96px;
     padding-right: 96px;
@@ -148,7 +152,7 @@ export default {
     align-items: center;
   }
   &__feedback-image {
-    widows: 72px;
+    width: 72px;
     height: 72px;
   }
   &__feedback-body-wrapper {
@@ -161,6 +165,145 @@ export default {
     }
     .company {
       font-size: 14px;
+    }
+  }
+  .parallax {
+    .controller {
+      position: sticky;
+      height: 500px;
+      top: calc(50% - 250px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      .parallax-galaxy {
+        position: absolute;
+        z-index: 0;
+        transition: opacity 0.5s ease 0s;
+        transform: scale(1);
+        right: -150px;
+        top: -125px;
+        .galaxy-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 500px;
+          height: 500px;
+          margin: 0 auto;
+          background-color: #0f1048;
+          .spin-container {
+            background: rgb(89, 91, 221);
+            background: linear-gradient(
+              75deg,
+              rgba(89, 91, 221, 1) 0%,
+              rgba(51, 53, 145, 1) 33%,
+              rgba(16, 17, 73, 1) 66%,
+              rgb(15, 16, 72) 100%
+            );
+            width: 448px;
+            height: 448px;
+            border-radius: 50%;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            .circle-container {
+              position: absolute;
+              background-size: cover;
+              background-position: center;
+              background-position-x: center;
+              background-position-y: center;
+              background-repeat: no-repeat;
+              animation: rotate-circle var(--dur) linear infinite;
+              &.small-circle {
+                width: 200px;
+                height: 200px;
+                background-image: url("../../assets/img/parallax/galaxy/small-circle/Ellipse3.png");
+              }
+              &.medium-circle {
+                --dur: 6s;
+                width: 270px;
+                height: 270px;
+                background-image: url("../../assets/img/parallax/galaxy/medium-circle/Ellipse2.png");
+              }
+              &.large-circle {
+                --dur: 15s;
+                width: 350px;
+                height: 350px;
+                background-image: url("../../assets/img/parallax/galaxy/medium-circle/Ellipse2.png");
+              }
+            }
+            .items-container {
+              position: absolute;
+              display: grid;
+              place-content: center;
+              .item {
+                grid-area: 1/1;
+                width: 63px;
+                height: 68px;
+              }
+              &.small-circle {
+                width: 200px;
+                height: 200px;
+                $n: 3;
+                $d: 9s;
+                .item {
+                  animation: small-spin #{$d} linear infinite;
+                  transform: rotate(0) translate(95px) rotate(0);
+                  @include calculate-delay($n, $d);
+                }
+                @keyframes small-spin {
+                  100% {
+                    transform: rotate(1turn) translate(95px) rotate(-1turn);
+                  }
+                }
+              }
+              &.medium-circle {
+                width: 270px;
+                height: 270px;
+                $n: 2;
+                $d: 14s;
+                .item {
+                  @include calculate-delay($n, $d, true);
+                  &.item-inner {
+                    transform: rotate(0) translate(135px) rotate(0);
+                    animation: medium-spin-inner #{$d} linear infinite;
+                  }
+                  &.item-outer {
+                    transform: rotate(0) translate(175px) rotate(0);
+                    animation: medium-spin-outer #{$d} linear infinite;
+                  }
+                }
+                @keyframes medium-spin-inner {
+                  100% {
+                    transform: rotate(1turn) translate(135px) rotate(-1turn);
+                  }
+                }
+                @keyframes medium-spin-outer {
+                  100% {
+                    transform: rotate(1turn) translate(175px) rotate(-1turn);
+                  }
+                }
+              }
+              &.large-circle {
+                width: 350px;
+                height: 350px;
+                $n: 6;
+                $d: 25s;
+                .item {
+                  @include calculate-delay($n, $d);
+                  transform: rotate(0) translate(225px) rotate(0);
+                  animation: large-spin #{$d} linear infinite;
+                }
+                @keyframes large-spin {
+                  100% {
+                    transform: rotate(1turn) translate(225px) rotate(-1turn);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   }
 }

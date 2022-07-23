@@ -36,7 +36,7 @@ export default {
     };
   },
   methods: {
-    getImgUrl
+    getImgUrl,
   },
 };
 </script>
