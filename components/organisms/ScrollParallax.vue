@@ -40,8 +40,25 @@
             <div class="parallax-galaxy">
               <div class="galaxy-container">
                 <div class="spin-container">
-                  <div class="stars">
-                    <!-- TODO create twinkle stars component with number of stars prop -->
+                  <div class="stars relative">
+                    <TwinkleStars
+                      :star-data="{
+                        amount: 48,
+                        size: {
+                          min: 3,
+                          max: 10,
+                        },
+                        duration: {
+                          min: 1,
+                          max: 8,
+                        },
+                        maxPosition: {
+                          x: 448,
+                          y: 448,
+                        },
+                      }"
+                    >
+                    </TwinkleStars>
                   </div>
                   <template v-for="(element, index) in galaxyData">
                     <div
@@ -85,12 +102,13 @@
 
 <script>
 import Button from "../atoms/Button.vue";
+import TwinkleStars from "../atoms/TwinkleStars.vue";
 import { getImgUrl } from "~/utils/helpers";
 import { scrollParallaxData } from "@/data/scrollParallax";
 
 export default {
   name: "ScrollParallax",
-  components: { Button },
+  components: { Button, TwinkleStars },
   data() {
     return {
       paragraphs: scrollParallaxData.paragraphs,
@@ -206,6 +224,10 @@ export default {
             display: flex;
             justify-content: center;
             align-items: center;
+            .stars {
+              width: 100%;
+              height: 100%;
+            }
             .circle-container {
               position: absolute;
               background-size: cover;

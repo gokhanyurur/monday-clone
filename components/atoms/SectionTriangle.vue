@@ -8,9 +8,9 @@ export default {
   props: {
     color: {
       type: String,
-      default: 'light'
-    }
-  }
+      default: "light",
+    },
+  },
 };
 </script>
 

@@ -6,7 +6,7 @@
       <TrustBadges />
     </div>
     <WorkOs />
-    <div class="relative">
+    <div class="relative hidden lg:block">
       <SectionTriangle color="darkest-blue" />
       <ScrollParallax />
     </div>

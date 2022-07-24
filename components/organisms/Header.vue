@@ -2,19 +2,27 @@
   <div>
     <div class="pt-16 m__header m__header__desktop text-light relative">
       <div class="m__container">
-        <div v-if="reRenderStars" class="m__header__star-canvas">
-          <div class="comet-line" />
-          <div
-            v-for="i in 18"
-            :key="i"
-            class="universe-star"
-            :style="`
-            --star-size: ${randBetween(3, 10)}px;
-            --star-duration: ${randBetween(1, 3)}s;
-            --star-left: ${randBetween(0, 1920, true)}px;
-            --star-top: ${randBetween(0, 660)}px;`"
-          />
-        </div>
+        <TwinkleStars
+          :star-data="{
+            amount: 18,
+            size: {
+              min: 3,
+              max: 10,
+            },
+            duration: {
+              min: 1,
+              max: 3,
+            },
+            maxPosition: {
+              x: 1920,
+              y: 660,
+            },
+          }"
+        >
+          <template #additional>
+            <div class="comet-line" />
+          </template>
+        </TwinkleStars>
         <div class="m__header__title text-center">
           <h1 class="pb-2 pt-5 mb-4">
             {{ "A platform built for a new way of working" }}
@@ -118,50 +126,19 @@
 </template>
 
 <script>
-import debounce from "debounce";
 import SquareTags from "@/components/molecules/SquareTags";
 import Input from "@/components/atoms/Input";
 import Button from "@/components/atoms/Button";
+import TwinkleStars from "@/components/atoms/TwinkleStars";
 import Separator from "@/components/atoms/Separator";
 import { getVideo, getImgUrl } from "@/utils/helpers";
 
 export default {
   name: "Header",
-  components: { SquareTags, Input, Button, Separator },
-  data() {
-    return {
-      reRenderStars: {
-        type: Boolean,
-        default: false,
-      },
-    };
-  },
-  mounted() {
-    this.$nextTick(function () {
-      this.onResize();
-    });
-    window.addEventListener("resize", debounce(this.onResize, 200, false));
-  },
+  components: { SquareTags, Input, Button, Separator, TwinkleStars },
   methods: {
     getImgUrl,
     getVideo,
-    randBetween(min = 0, max = 100, isWidth = false) {
-      if (isWidth && process.client) {
-        max = window.innerWidth;
-      }
-      const diff = max - min;
-      let rand = Math.random();
-      rand = Math.floor(rand * diff);
-      return rand + min;
-    },
-    onResize() {
-      if (process.client) {
-        this.reRenderStars = false;
-        this.$nextTick(() => {
-          this.reRenderStars = true;
-        });
-      }
-    },
   },
 };
 </script>
@@ -191,47 +168,14 @@ export default {
       }
     }
   }
-  &__star-canvas {
+  .comet-line {
+    transform: rotate(0deg);
+    width: 105px;
+    top: 317px;
+    left: calc(50% - 90px);
+    background: linear-gradient(90deg, transparent, #fff);
     position: absolute;
-    height: 100%;
-    width: 100%;
-    left: 0;
-    top: 0;
-    .comet-line {
-      transform: rotate(0deg);
-      width: 105px;
-      top: 317px;
-      left: calc(50% - 90px);
-      background: linear-gradient(90deg, transparent, #fff);
-      position: absolute;
-      height: 1px;
-    }
-    .universe-star {
-      position: absolute;
-      background-image: url(https://dapulse-res.cloudinary.com/image/upload/Generator_featured%20images/Home%20Page%20-%202022%20Rebrand/parallax/integrations/star.svg);
-      background-repeat: no-repeat;
-      background-size: cover;
-      border-radius: 50%;
-      animation: resize var(--star-duration) infinite ease-in-out;
-      animation-direction: alternate;
-      transform: translateX(-50%) translateY(-50%);
-      left: var(--star-left);
-      top: var(--star-top);
-    }
-    @keyframes resize {
-      from {
-        width: 0;
-        height: 0;
-      }
-      85% {
-        width: var(--star-size);
-        height: var(--star-size);
-      }
-      100% {
-        width: var(--star-size);
-        height: var(--star-size);
-      }
-    }
+    height: 1px;
   }
   &__title {
     max-width: 752px;
