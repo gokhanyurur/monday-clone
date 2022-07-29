@@ -12,6 +12,7 @@ export type Button = {
 };
 
 export type Review = {
+  id?: string;
   title?: string;
   description?: string;
   button?: Button;
@@ -63,6 +64,7 @@ export const scrollParallaxData: scrollParallax = {
       },
     },
     {
+      id: "stage-1",
       title: "Stay on track to <b>reach your goals, faster</b>",
       description:
         "Get a high-level overview of your organization with customizable dashboards. Make confident decisions and easily scale workflows for your evolving needs.",

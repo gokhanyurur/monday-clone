@@ -8,7 +8,7 @@
             :key="item.title"
             class="scroll-parallax__item-wrapper"
           >
-            <h2 class="core-title mb-4" v-html="item.title" />
+            <h2 :id="item.id" class="core-title mb-4" v-html="item.title" />
             <p class="paragraph-body">{{ item.description }}</p>
             <Button
               v-if="item.button"
@@ -46,14 +46,14 @@
                         amount: 48,
                         size: {
                           min: 3,
-                          max: 10,
+                          max: 20,
                         },
                         duration: {
                           min: 1,
                           max: 8,
                         },
                         maxPosition: {
-                          x: 448,
+                          x: 350,
                           y: 448,
                         },
                       }"
@@ -97,6 +97,7 @@
         </div>
       </div>
     </div>
+    <div id="stage-2" />
   </div>
 </template>
 
@@ -115,6 +116,31 @@ export default {
       galaxyData: scrollParallaxData.galaxy,
     };
   },
+  mounted() {
+    const observer = new IntersectionObserver(
+      function (entries) {
+        const parallaxGalaxy =
+          document.getElementsByClassName("parallax-galaxy")[0];
+        entries.forEach((entry) => {
+          if (entry.target.id === "stage-1") {
+            if (parallaxGalaxy.classList.contains("fade-out")) {
+              parallaxGalaxy.classList.add("fade-in");
+              parallaxGalaxy.classList.remove("fade-out");
+            } else if (entry.isIntersecting) {
+              parallaxGalaxy.classList.remove("fade-in");
+              parallaxGalaxy.classList.add("fade-out");
+            }
+            // eslint-disable-next-line no-empty
+          } else if (entry.target.id === "stage-2") {
+          }
+        });
+      },
+      { threshold: [1] }
+    );
+
+    observer.observe(document.querySelector("#stage-1"));
+    observer.observe(document.querySelector("#stage-2"));
+  },
   methods: {
     getImgUrl,
   },
@@ -132,6 +158,32 @@ export default {
       }
     }
   }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.fade-out {
+  animation: fade-out 0.35s ease-in;
+  animation-fill-mode: forwards;
+  opacity: 1;
+}
+.fade-in {
+  animation: fade-in 0.35s ease-in;
+  animation-fill-mode: forwards;
+  opacity: 1;
 }
 .scroll-parallax {
   .m__container {
