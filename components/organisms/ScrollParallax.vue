@@ -37,7 +37,7 @@
         </div>
         <div class="parallax">
           <div class="controller">
-            <div class="parallax-galaxy">
+            <div class="parallax-galaxy stage-1-element">
               <div class="galaxy-container">
                 <div class="spin-container">
                   <div class="stars relative">
@@ -92,7 +92,87 @@
                 </div>
               </div>
             </div>
-            <!-- TODO other animations comes here -->
+            <div class="asset-inner absolute stage-1-element">
+              <div class="window-mask">
+                <div class="window-header">
+                  <div class="circle-wrapper">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="window-content">
+                  <div class="picture-component">
+                    <img
+                      :src="
+                        getImgUrl(
+                          'first_board.png',
+                          '/parallax/galaxy-foreground'
+                        )
+                      "
+                      alt="First Board"
+                      width="604px"
+                      height="406px"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="asset-inner absolute stage-2-element fade-out">
+              <div class="window-mask">
+                <div class="window-header">
+                  <div class="circle-wrapper">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                  </div>
+                </div>
+                <div class="content-wrapper">
+                  <div class="video-component">
+                    <video
+                      preload="auto"
+                      :poster="
+                        getImgUrl('goals_dashboard.png', '/video-posters')
+                      "
+                      style="width: 100%; height: 100%"
+                      muted
+                    >
+                      <source :src="getVideo('goals_dashboard.mp4')" />
+                    </video>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="asset-inner person person-1">
+              <div class="picture-component">
+                <img
+                  :src="getImgUrl('person1.png', '/parallax/galaxy-foreground')"
+                  alt="Person 1"
+                  width="50px"
+                  height="50px"
+                />
+              </div>
+            </div>
+            <div class="asset-inner person person-2">
+              <div class="picture-component">
+                <img
+                  :src="getImgUrl('person2.png', '/parallax/galaxy-foreground')"
+                  alt="Person 2"
+                  width="50px"
+                  height="50px"
+                />
+              </div>
+            </div>
+            <div class="asset-inner person person-3">
+              <div class="picture-component">
+                <img
+                  :src="getImgUrl('person3.png', '/parallax/galaxy-foreground')"
+                  alt="Person 3"
+                  width="50px"
+                  height="50px"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -104,7 +184,7 @@
 <script>
 import Button from "../atoms/Button.vue";
 import TwinkleStars from "../atoms/TwinkleStars.vue";
-import { getImgUrl } from "~/utils/helpers";
+import { getImgUrl, getVideo } from "~/utils/helpers";
 import { scrollParallaxData } from "@/data/scrollParallax";
 
 export default {
@@ -119,19 +199,33 @@ export default {
   mounted() {
     const observer = new IntersectionObserver(
       function (entries) {
-        const parallaxGalaxy =
-          document.getElementsByClassName("parallax-galaxy")[0];
+        const stage1Els = document.getElementsByClassName("stage-1-element");
+        // const stage2Els = document.getElementsByClassName("stage-2-element");
         entries.forEach((entry) => {
           if (entry.target.id === "stage-1") {
-            if (parallaxGalaxy.classList.contains("fade-out")) {
-              parallaxGalaxy.classList.add("fade-in");
-              parallaxGalaxy.classList.remove("fade-out");
-            } else if (entry.isIntersecting) {
-              parallaxGalaxy.classList.remove("fade-in");
-              parallaxGalaxy.classList.add("fade-out");
-            }
-            // eslint-disable-next-line no-empty
+            [...stage1Els].forEach((el) => {
+              if (el.classList.contains("fade-out")) {
+                el.classList.add("fade-in");
+                el.classList.remove("fade-out");
+                [
+                  ...document.getElementsByClassName("asset-inner person"),
+                ].forEach((el) => el.classList.remove("animate-to-left"));
+              } else if (entry.isIntersecting) {
+                el.classList.remove("fade-in");
+                el.classList.add("fade-out");
+                [
+                  ...document.getElementsByClassName("asset-inner person"),
+                ].forEach((el) => el.classList.add("animate-to-left"));
+              }
+            });
           } else if (entry.target.id === "stage-2") {
+            // [...stage2Els].forEach((el) => {
+            //   if (el.classList.contains("fade-out")) {
+            //     console.log("start stage-2 video");
+            //   } else if (entry.isIntersecting) {
+            //     console.log("move back to stage-1 typing animation");
+            //   }
+            // });
           }
         });
       },
@@ -143,6 +237,7 @@ export default {
   },
   methods: {
     getImgUrl,
+    getVideo,
   },
 };
 </script>
@@ -375,6 +470,57 @@ export default {
                 }
               }
             }
+          }
+        }
+      }
+      .asset-inner {
+        z-index: 1;
+        .window-content {
+          img {
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+          }
+        }
+        &.person {
+          width: fit-content;
+          position: absolute;
+          left: 203px;
+          transform: scale(0.4);
+          transition: 0.75s ease all;
+          &.animate-to-left {
+            transition: 0.75s ease all;
+            transform: scale(1);
+            left: 0;
+          }
+        }
+        &.person-1 {
+          top: 145px;
+          transition: 0.75s ease all;
+          &.animate-to-left {
+            top: 110px;
+            transition: 0.75s ease all;
+          }
+          &.animate-to-bottom {
+          }
+        }
+        &.person-2 {
+          top: 230px;
+          transition: 0.75s ease all;
+          &.animate-to-left {
+            top: 195px;
+            transition: 0.75s ease all;
+          }
+          &.animate-to-bottom {
+          }
+        }
+        &.person-3 {
+          top: 312px;
+          transition: 0.75s ease all;
+          &.animate-to-left {
+            top: 280px;
+            transition: 0.75s ease all;
+          }
+          &.animate-to-bottom {
           }
         }
       }

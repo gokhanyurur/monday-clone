@@ -10,6 +10,7 @@
       <SectionTriangle color="darkest-blue" />
       <ScrollParallax />
     </div>
+    <div style="height: 1000px" />
   </div>
 </template>
 
