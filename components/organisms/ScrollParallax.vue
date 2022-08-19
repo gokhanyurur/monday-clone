@@ -134,7 +134,12 @@
                       :poster="
                         getImgUrl('goals_dashboard.png', '/video-posters')
                       "
-                      style="width: 100%; height: 100%"
+                      style="
+                        width: 100%;
+                        height: 100%;
+                        border-bottom-left-radius: 8px;
+                        border-bottom-right-radius: 8px;
+                      "
                       muted
                     >
                       <source :src="getVideo('goals_dashboard.mp4')" />
@@ -173,6 +178,38 @@
                 />
               </div>
             </div>
+            <div class="typed-component person person-1">
+              <span class="content">
+                <span class="tag">{{ "@Marketing Team" }}</span>
+                <span>{{ "can you update about project progress?" }}</span>
+              </span>
+              <span class="typed-cursor typed-cursor--blink">{{ "|" }}</span>
+            </div>
+            <div class="typed-component person person-2">
+              <span class="content">
+                <span>{{ "We're almost done," }}</span>
+                <span class="tag">{{ "@Samantha" }}</span>
+                <span>{{ "can you add the file?" }}</span>
+              </span>
+              <span class="typed-cursor typed-cursor--blink">{{ "|" }}</span>
+            </div>
+            <div class="typed-component person person-3">
+              <span class="content">
+                <div class="text-with-pdf">
+                  <div>
+                    <span>{{ "I have just uploaded it!" }}</span>
+                  </div>
+                  <img
+                    :src="getImgUrl('pdf.png', '/icons')"
+                    class="pdf-icon"
+                    width="70px"
+                    height="79px"
+                    alt="PDF"
+                  />
+                </div>
+              </span>
+              <span class="typed-cursor typed-cursor--blink">{{ "|" }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -200,7 +237,7 @@ export default {
     const observer = new IntersectionObserver(
       function (entries) {
         const stage1Els = document.getElementsByClassName("stage-1-element");
-        // const stage2Els = document.getElementsByClassName("stage-2-element");
+        const stage2Els = document.getElementsByClassName("stage-2-element");
         entries.forEach((entry) => {
           if (entry.target.id === "stage-1") {
             [...stage1Els].forEach((el) => {
@@ -219,13 +256,25 @@ export default {
               }
             });
           } else if (entry.target.id === "stage-2") {
-            // [...stage2Els].forEach((el) => {
-            //   if (el.classList.contains("fade-out")) {
-            //     console.log("start stage-2 video");
-            //   } else if (entry.isIntersecting) {
-            //     console.log("move back to stage-1 typing animation");
-            //   }
-            // });
+            [...stage2Els].forEach((el) => {
+              if (el.classList.contains("fade-in")) {
+                el.classList.remove("fade-in");
+                el.classList.add("fade-out");
+                [
+                  ...document.getElementsByClassName("asset-inner person"),
+                ].forEach((el) => {
+                  el.classList.remove("animate-to-bottom");
+                });
+              } else if (entry.isIntersecting) {
+                el.classList.add("fade-in");
+                el.classList.remove("fade-out");
+                [
+                  ...document.getElementsByClassName("asset-inner person"),
+                ].forEach((el) => {
+                  el.classList.add("animate-to-bottom");
+                });
+              }
+            });
           }
         });
       },
@@ -492,6 +541,10 @@ export default {
             transform: scale(1);
             left: 0;
           }
+          &.animate-to-bottom {
+            transform: scale(0.4);
+            top: 394px !important;
+          }
         }
         &.person-1 {
           top: 145px;
@@ -501,6 +554,7 @@ export default {
             transition: 0.75s ease all;
           }
           &.animate-to-bottom {
+            left: 344px;
           }
         }
         &.person-2 {
@@ -511,6 +565,7 @@ export default {
             transition: 0.75s ease all;
           }
           &.animate-to-bottom {
+            left: 420px;
           }
         }
         &.person-3 {
@@ -521,6 +576,47 @@ export default {
             transition: 0.75s ease all;
           }
           &.animate-to-bottom {
+            left: 490px;
+          }
+        }
+      }
+      .typed-component {
+        font-size: 22px;
+        &.person {
+          position: absolute;
+          left: 75px;
+        }
+        &.person-1 {
+          top: 105px;
+        }
+        &.person-2 {
+          top: 195px;
+        }
+        &.person-3 {
+          top: 275px;
+          display: flex;
+        }
+        .content {
+          .tag {
+            color: get-color("tag-blue");
+          }
+          .text-with-pdf {
+            .pdf-icon {
+              width: 70px;
+              margin-left: -20px;
+              margin-top: -8px;
+            }
+          }
+        }
+        .typed-cursor {
+          opacity: 1;
+          &--blink {
+            animation: typedBlink 0.7s infinite;
+          }
+          @keyframes typedBlink {
+            50% {
+              opacity: 0;
+            }
           }
         }
       }
