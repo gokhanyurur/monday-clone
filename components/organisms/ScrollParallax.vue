@@ -1,18 +1,5 @@
 <template>
   <div class="scroll-parallax bg-darkest-blue text-light">
-    <!--    TEST the typing animation-->
-    <!--    <div class="parallax">-->
-    <!--      <div class="controller">-->
-    <!--        <div class="asset-inner">-->
-    <!--          <div class="typed-component person person-1">-->
-    <!--            <span class="content" style="&#45;&#45;letterNum: 54">-->
-    <!--              <span class="tag">{{ "@Marketing Team" }}</span>-->
-    <!--              <span>{{ "can you update about project progress?" }}</span>-->
-    <!--            </span>-->
-    <!--          </div>-->
-    <!--        </div>-->
-    <!--      </div>-->
-    <!--    </div>-->
     <div class="m__container">
       <div class="flex scroll-parallax__wrapper">
         <div class="paragraphs">
@@ -192,36 +179,36 @@
               </div>
             </div>
             <div class="typed-component person person-1">
-              <span class="content">
+              <span class="content" style="--letterNum: 19; --lineNum: 0">
                 <span class="tag">{{ "@Marketing Team" }}</span>
-                <span>{{ "can you update about project progress?" }}</span>
+                <span>{{ "can" }}</span>
               </span>
-              <span class="typed-cursor typed-cursor--blink">{{ "|" }}</span>
+              <span class="content" style="--letterNum: 36; --lineNum: 1">
+                <span>{{ "you update about project progress?" }}</span>
+              </span>
             </div>
             <div class="typed-component person person-2">
-              <span class="content">
+              <span class="content" style="--letterNum: 18; --lineNum: 3">
                 <span>{{ "We're almost done," }}</span>
+              </span>
+              <span class="content" style="--letterNum: 31; --lineNum: 4">
                 <span class="tag">{{ "@Samantha" }}</span>
                 <span>{{ "can you add the file?" }}</span>
               </span>
-              <span class="typed-cursor typed-cursor--blink">{{ "|" }}</span>
             </div>
             <div class="typed-component person person-3">
-              <span class="content">
-                <div class="text-with-pdf">
-                  <div>
-                    <span>{{ "I have just uploaded it!" }}</span>
-                  </div>
-                  <img
-                    :src="getImgUrl('pdf.png', '/icons')"
-                    class="pdf-icon"
-                    width="70px"
-                    height="79px"
-                    alt="PDF"
-                  />
-                </div>
+              <span class="content" style="--letterNum: 24; --lineNum: 5">
+                <span>{{ "I have just uploaded it!" }}</span>
               </span>
-              <span class="typed-cursor typed-cursor--blink">{{ "|" }}</span>
+              <div class="text-with-pdf">
+                <img
+                  :src="getImgUrl('pdf.png', '/icons')"
+                  class="pdf-icon"
+                  width="70px"
+                  height="79px"
+                  alt="PDF"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -612,15 +599,18 @@ export default {
         .content {
           position: relative;
           white-space: pre;
-          display: inline-block;
-          animation: typing 2s steps(var(--letterNum)) forwards;
+          display: block;
           overflow: hidden;
+          max-width: max-content;
+          animation: typing 0.6s steps(var(--letterNum)) forwards;
+          animation-delay: calc(var(--lineNum) * 0.6s);
+          width: 0;
           @keyframes typing {
             0% {
               width: 0;
             }
-            30% {
-              width: 590px;
+            100% {
+              width: 100%;
             }
           }
           &::before {
@@ -630,16 +620,31 @@ export default {
             right: 0;
             width: 2px;
             height: 100%;
+            opacity: 1;
             background: get-color("light");
-            animation: blinkCursor 0.8s steps(3) infinite;
           }
-          @keyframes blinkCursor {
+          &:not(:last-child) {
+            &::before {
+              opacity: 0;
+              animation: typedBlinkFinite 0.6s forwards;
+            }
+          }
+          &:last-child {
+            &::before {
+              animation: typedBlinkInfinite 0.7s infinite;
+            }
+          }
+          @keyframes typedBlinkFinite {
             0%,
-            75% {
+            100% {
+              opacity: 0;
+            }
+            50% {
               opacity: 1;
             }
-            76%,
-            100% {
+          }
+          @keyframes typedBlinkInfinite {
+            50% {
               opacity: 0;
             }
           }
@@ -651,17 +656,6 @@ export default {
               width: 70px;
               margin-left: -20px;
               margin-top: -8px;
-            }
-          }
-        }
-        .typed-cursor {
-          opacity: 1;
-          &--blink {
-            animation: typedBlink 0.7s infinite;
-          }
-          @keyframes typedBlink {
-            50% {
-              opacity: 0;
             }
           }
         }
