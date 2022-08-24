@@ -1,5 +1,18 @@
 <template>
   <div class="scroll-parallax bg-darkest-blue text-light">
+    <!--    TEST the typing animation-->
+    <!--    <div class="parallax">-->
+    <!--      <div class="controller">-->
+    <!--        <div class="asset-inner">-->
+    <!--          <div class="typed-component person person-1">-->
+    <!--            <span class="content" style="&#45;&#45;letterNum: 54">-->
+    <!--              <span class="tag">{{ "@Marketing Team" }}</span>-->
+    <!--              <span>{{ "can you update about project progress?" }}</span>-->
+    <!--            </span>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
     <div class="m__container">
       <div class="flex scroll-parallax__wrapper">
         <div class="paragraphs">
@@ -597,6 +610,39 @@ export default {
           display: flex;
         }
         .content {
+          position: relative;
+          white-space: pre;
+          display: inline-block;
+          animation: typing 2s steps(var(--letterNum)) forwards;
+          overflow: hidden;
+          @keyframes typing {
+            0% {
+              width: 0;
+            }
+            30% {
+              width: 590px;
+            }
+          }
+          &::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 2px;
+            height: 100%;
+            background: get-color("light");
+            animation: blinkCursor 0.8s steps(3) infinite;
+          }
+          @keyframes blinkCursor {
+            0%,
+            75% {
+              opacity: 1;
+            }
+            76%,
+            100% {
+              opacity: 0;
+            }
+          }
           .tag {
             color: get-color("tag-blue");
           }
