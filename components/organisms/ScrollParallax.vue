@@ -594,7 +594,10 @@ export default {
         }
         &.person-3 {
           top: 275px;
-          display: flex;
+          display: block;
+          .content {
+            min-height: 30px;
+          }
         }
         .content {
           position: relative;
@@ -625,7 +628,6 @@ export default {
           }
           &:not(:last-child) {
             &::before {
-              opacity: 0;
               animation: typedBlinkFinite 0.6s forwards;
             }
           }
@@ -651,11 +653,36 @@ export default {
           .tag {
             color: get-color("tag-blue");
           }
-          .text-with-pdf {
-            .pdf-icon {
-              width: 70px;
-              margin-left: -20px;
-              margin-top: -8px;
+        }
+        .text-with-pdf {
+          .pdf-icon {
+            min-width: 70px;
+            width: auto;
+            height: 80px;
+            margin-left: -20px;
+            margin-top: -8px;
+            animation: popOut 0.5s;
+            animation-fill-mode: forwards;
+            visibility: hidden;
+            animation-delay: calc(
+              6 * 0.6s
+            ); //6th element on typewriter stuff, 0.6s per line
+            @keyframes popOut {
+              0% {
+                opacity: 0;
+                transform: scale(0.5);
+              }
+              1%,
+              100% {
+                visibility: visible;
+              }
+              75% {
+                opacity: 1;
+                transform: scale(1.15);
+              }
+              100% {
+                transform: scale(1);
+              }
             }
           }
         }
