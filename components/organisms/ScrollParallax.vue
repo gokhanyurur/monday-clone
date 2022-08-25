@@ -597,6 +597,9 @@ export default {
           display: block;
           .content {
             min-height: 30px;
+            &::before {
+              animation: typedBlinkInfinite 0.6s infinite !important;
+            }
           }
         }
         .content {
@@ -629,11 +632,12 @@ export default {
           &:not(:last-child) {
             &::before {
               animation: typedBlinkFinite 0.6s forwards;
+              animation-delay: calc(var(--lineNum) * 0.6s);
             }
           }
           &:last-child {
             &::before {
-              animation: typedBlinkInfinite 0.7s infinite;
+              animation: typedBlinkInfinite 0.6s infinite;
             }
           }
           @keyframes typedBlinkFinite {
