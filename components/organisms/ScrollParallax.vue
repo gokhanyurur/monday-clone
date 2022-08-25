@@ -178,36 +178,38 @@
                 />
               </div>
             </div>
-            <div class="typed-component person person-1">
-              <span class="content" style="--letterNum: 19; --lineNum: 0">
-                <span class="tag">{{ "@Marketing Team" }}</span>
-                <span>{{ "can" }}</span>
-              </span>
-              <span class="content" style="--letterNum: 36; --lineNum: 1">
-                <span>{{ "you update about project progress?" }}</span>
-              </span>
-            </div>
-            <div class="typed-component person person-2">
-              <span class="content" style="--letterNum: 18; --lineNum: 3">
-                <span>{{ "We're almost done," }}</span>
-              </span>
-              <span class="content" style="--letterNum: 31; --lineNum: 4">
-                <span class="tag">{{ "@Samantha" }}</span>
-                <span>{{ "can you add the file?" }}</span>
-              </span>
-            </div>
-            <div class="typed-component person person-3">
-              <span class="content" style="--letterNum: 24; --lineNum: 5">
-                <span>{{ "I have just uploaded it!" }}</span>
-              </span>
-              <div class="text-with-pdf">
-                <img
-                  :src="getImgUrl('pdf.png', '/icons')"
-                  class="pdf-icon"
-                  width="70px"
-                  height="79px"
-                  alt="PDF"
-                />
+            <div class="typewriter-elements-wrapper">
+              <div class="typed-component person person-1">
+                <span class="content" style="--letterNum: 19; --lineNum: 0">
+                  <span class="tag">{{ "@Marketing Team" }}</span>
+                  <span>{{ "can" }}</span>
+                </span>
+                <span class="content" style="--letterNum: 36; --lineNum: 1">
+                  <span>{{ "you update about project progress?" }}</span>
+                </span>
+              </div>
+              <div class="typed-component person person-2">
+                <span class="content" style="--letterNum: 18; --lineNum: 3">
+                  <span>{{ "We're almost done," }}</span>
+                </span>
+                <span class="content" style="--letterNum: 31; --lineNum: 4">
+                  <span class="tag">{{ "@Samantha" }}</span>
+                  <span>{{ "can you add the file?" }}</span>
+                </span>
+              </div>
+              <div class="typed-component person person-3">
+                <span class="content" style="--letterNum: 24; --lineNum: 5">
+                  <span>{{ "I have just uploaded it!" }}</span>
+                </span>
+                <div class="text-with-pdf">
+                  <img
+                    :src="getImgUrl('pdf.png', '/icons')"
+                    class="pdf-icon"
+                    width="70px"
+                    height="79px"
+                    alt="PDF"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -248,6 +250,9 @@ export default {
                   ...document.getElementsByClassName("asset-inner person"),
                 ].forEach((el) => el.classList.remove("animate-to-left"));
               } else if (entry.isIntersecting) {
+                document
+                  .getElementsByClassName("typewriter-elements-wrapper")[0]
+                  .classList.add("play");
                 el.classList.remove("fade-in");
                 el.classList.add("fade-out");
                 [
@@ -580,6 +585,88 @@ export default {
           }
         }
       }
+      .typewriter-elements-wrapper {
+        &.play {
+          .typed-component {
+            &.person-3 {
+              .content {
+                &::before {
+                  animation: typedBlinkInfinite 0.6s infinite !important;
+                }
+              }
+              .text-with-pdf {
+                .pdf-icon {
+                  min-width: 70px;
+                  width: auto;
+                  height: 80px;
+                  margin-left: -20px;
+                  margin-top: -8px;
+                  animation: popOut 0.5s;
+                  animation-fill-mode: forwards;
+                  visibility: hidden;
+                  animation-delay: calc(
+                    6 * 0.6s
+                  ); //6th element on typewriter stuff, 0.6s per line
+                  @keyframes popOut {
+                    0% {
+                      opacity: 0;
+                      transform: scale(0.5);
+                    }
+                    1%,
+                    100% {
+                      visibility: visible;
+                    }
+                    75% {
+                      opacity: 1;
+                      transform: scale(1.15);
+                    }
+                    100% {
+                      transform: scale(1);
+                    }
+                  }
+                }
+              }
+            }
+          }
+          .content {
+            animation: typing 0.6s steps(var(--letterNum)) forwards;
+            animation-delay: calc(var(--lineNum) * 0.6s);
+            @keyframes typing {
+              0% {
+                width: 0;
+              }
+              100% {
+                width: 100%;
+              }
+            }
+            &:not(:last-child) {
+              &::before {
+                animation: typedBlinkFinite 0.6s forwards;
+                animation-delay: calc(var(--lineNum) * 0.6s);
+              }
+            }
+            &:last-child {
+              &::before {
+                animation: typedBlinkInfinite 0.6s infinite;
+              }
+            }
+            @keyframes typedBlinkFinite {
+              0%,
+              100% {
+                opacity: 0;
+              }
+              50% {
+                opacity: 1;
+              }
+            }
+            @keyframes typedBlinkInfinite {
+              50% {
+                opacity: 0;
+              }
+            }
+          }
+        }
+      }
       .typed-component {
         font-size: 22px;
         &.person {
@@ -597,9 +684,6 @@ export default {
           display: block;
           .content {
             min-height: 30px;
-            &::before {
-              animation: typedBlinkInfinite 0.6s infinite !important;
-            }
           }
         }
         .content {
@@ -608,17 +692,7 @@ export default {
           display: block;
           overflow: hidden;
           max-width: max-content;
-          animation: typing 0.6s steps(var(--letterNum)) forwards;
-          animation-delay: calc(var(--lineNum) * 0.6s);
           width: 0;
-          @keyframes typing {
-            0% {
-              width: 0;
-            }
-            100% {
-              width: 100%;
-            }
-          }
           &::before {
             content: "";
             position: absolute;
@@ -629,65 +703,8 @@ export default {
             opacity: 1;
             background: get-color("light");
           }
-          &:not(:last-child) {
-            &::before {
-              animation: typedBlinkFinite 0.6s forwards;
-              animation-delay: calc(var(--lineNum) * 0.6s);
-            }
-          }
-          &:last-child {
-            &::before {
-              animation: typedBlinkInfinite 0.6s infinite;
-            }
-          }
-          @keyframes typedBlinkFinite {
-            0%,
-            100% {
-              opacity: 0;
-            }
-            50% {
-              opacity: 1;
-            }
-          }
-          @keyframes typedBlinkInfinite {
-            50% {
-              opacity: 0;
-            }
-          }
           .tag {
             color: get-color("tag-blue");
-          }
-        }
-        .text-with-pdf {
-          .pdf-icon {
-            min-width: 70px;
-            width: auto;
-            height: 80px;
-            margin-left: -20px;
-            margin-top: -8px;
-            animation: popOut 0.5s;
-            animation-fill-mode: forwards;
-            visibility: hidden;
-            animation-delay: calc(
-              6 * 0.6s
-            ); //6th element on typewriter stuff, 0.6s per line
-            @keyframes popOut {
-              0% {
-                opacity: 0;
-                transform: scale(0.5);
-              }
-              1%,
-              100% {
-                visibility: visible;
-              }
-              75% {
-                opacity: 1;
-                transform: scale(1.15);
-              }
-              100% {
-                transform: scale(1);
-              }
-            }
           }
         }
       }
