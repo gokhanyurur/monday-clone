@@ -139,15 +139,8 @@
               </div>
             </div>
           </div>
-          <div class="item item-9 dashboard">
-            <div class="window-mask">
-              <div class="window-header">
-                <div class="circle-wrapper">
-                  <div class="circle"></div>
-                  <div class="circle"></div>
-                  <div class="circle"></div>
-                </div>
-              </div>
+          <Window classes="item item-9 dashboard">
+            <template #content>
               <div class="window-content">
                 <div class="asset-inner">
                   <div class="video-component">
@@ -164,8 +157,8 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </template>
+          </Window>
         </div>
       </div>
     </div>
@@ -183,15 +176,16 @@
 <script lang="ts">
 import Vue from "vue";
 import Button from "~/components/atoms/Button.vue";
+import Window from "~/components/atoms/Window.vue";
 import { getImgUrl, getVideo } from "@/utils/helpers";
 
 export default Vue.extend({
   name: "WorkOS",
-  components: { Button },
+  components: { Button, Window },
   mounted() {
     const observer = new IntersectionObserver(
       function (entries) {
-        if (entries[0].isIntersecting === true)
+        if (entries[0].isIntersecting)
           setTimeout(() => {
             (
               document.querySelector(".timeline video") as HTMLVideoElement
@@ -245,13 +239,13 @@ export default Vue.extend({
 <style lang="scss" scoped>
 .work-os-desktop {
   display: none;
-  @media (min-width: 1280px) {
+  @include media-breakpoint-up("lg") {
     display: block;
   }
 }
 .work-os-mobile {
   display: block;
-  @media (min-width: 1280px) {
+  @include media-breakpoint-up("lg") {
     display: none;
   }
 }
@@ -300,7 +294,7 @@ export default Vue.extend({
     filter: drop-shadow(-11px 14px 35px rgba(29, 140, 242, 0.2));
     border-radius: 8px;
     z-index: -1;
-    background-color: #fff;
+    background-color: get-color("light");
     display: flex;
     justify-content: center;
     align-items: center;
@@ -337,7 +331,7 @@ export default Vue.extend({
   .item-6 {
     grid-area: phone;
     padding: 7px;
-    background-color: #fff;
+    background-color: get-color("light");
     border-radius: 24px;
     height: fit-content;
     .asset-inner {
@@ -357,40 +351,6 @@ export default Vue.extend({
   }
   .item-9 {
     grid-area: dashboard;
-    .window-mask {
-      display: flex;
-      flex-direction: column;
-      filter: drop-shadow(0px 8px 24px rgba(29, 140, 242, 0.5));
-      .window-header {
-        display: flex;
-        height: 15px;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        background: rgba(255, 255, 255, 0.4);
-        .circle-wrapper {
-          display: flex;
-          align-items: center;
-          margin-left: 8px;
-          .circle {
-            background: #ffffff;
-            height: 5px;
-            width: 5px;
-            border-radius: 50%;
-            margin-right: 4px;
-          }
-        }
-      }
-      .window-content {
-        .asset-inner {
-          .video-component {
-            video {
-              border-top-left-radius: 0 !important;
-              border-top-right-radius: 0 !important;
-            }
-          }
-        }
-      }
-    }
   }
 }
 </style>

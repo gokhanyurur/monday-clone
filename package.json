@@ -13,14 +13,14 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nuxtjs/style-resources": "^1.2.1",
     "core-js": "^3.19.3",
     "debounce": "^1.2.1",
     "nuxt": "^2.15.8",
     "v-click-outside": "^3.1.2",
     "vue": "^2.6.14",
     "vue-server-renderer": "^2.6.14",
-    "vue-template-compiler": "^2.6.14",
-    "webpack": "^4.46.0"
+    "vue-template-compiler": "^2.6.14"
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.3",
@@ -42,9 +42,10 @@
     "jest": "^27.4.4",
     "jest-transform-stub": "^2.0.0",
     "prettier": "^2.5.1",
-    "sass": "^1.49.9",
+    "sass": "^1.52.3",
     "sass-loader": "^10.2.1",
     "ts-jest": "^27.1.1",
-    "vue-jest": "^3.0.4"
+    "vue-jest": "^3.0.4",
+    "webpack": "^4.46.0"
   }
 }

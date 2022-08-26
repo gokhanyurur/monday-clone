@@ -2,7 +2,7 @@ import { mount } from "@vue/test-utils";
 import Button from "@/components/atoms/Button.vue";
 import Logo from "@/components/atoms/Logo.vue";
 import DropdownItem from "@/components/atoms/DropdownItem.vue";
-import MInput from "@/components/atoms/MInput";
+import Input from "@/components/atoms/Input";
 import Separator from "@/components/atoms/Separator";
 import SquareTag from "@/components/atoms/SquareTag";
 
@@ -59,9 +59,9 @@ describe("Logo Atom", () => {
   });
 });
 
-describe("MInput Atom", () => {
+describe("Input Atom", () => {
   test("test props", () => {
-    const wrapper = mount(MInput, {
+    const wrapper = mount(Input, {
       propsData: {
         placeholder: "Test placeholder",
         classes: "test-input-class",

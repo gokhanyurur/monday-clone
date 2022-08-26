@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  name: "MInput",
+  name: "Input",
   props: {
     classes: {
       type: String,
@@ -36,14 +36,14 @@ export default {
   max-width: 305px;
   width: 100%;
   border-radius: 8px;
-  background-color: #f5f5f5;
-  color: #333333;
+  background-color: get-color("light");
+  color: get-color("dark");
   border: 1px solid grey;
   outline: none;
   &:focus {
-    background-color: #ffffff;
+    background-color: get-color("light");
     &::placeholder {
-      color: #6c6cff;
+      color: get-color("main-blue");
     }
   }
   &__wrapper {
