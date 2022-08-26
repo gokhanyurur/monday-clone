@@ -139,15 +139,8 @@
               </div>
             </div>
           </div>
-          <div class="item item-9 dashboard">
-            <div class="window-mask">
-              <div class="window-header">
-                <div class="circle-wrapper">
-                  <div class="circle"></div>
-                  <div class="circle"></div>
-                  <div class="circle"></div>
-                </div>
-              </div>
+          <Window classes="item item-9 dashboard">
+            <template #content>
               <div class="window-content">
                 <div class="asset-inner">
                   <div class="video-component">
@@ -164,8 +157,8 @@
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            </template>
+          </Window>
         </div>
       </div>
     </div>
@@ -183,11 +176,12 @@
 <script lang="ts">
 import Vue from "vue";
 import Button from "~/components/atoms/Button.vue";
+import Window from "~/components/atoms/Window.vue";
 import { getImgUrl, getVideo } from "@/utils/helpers";
 
 export default Vue.extend({
   name: "WorkOS",
-  components: { Button },
+  components: { Button, Window },
   mounted() {
     const observer = new IntersectionObserver(
       function (entries) {

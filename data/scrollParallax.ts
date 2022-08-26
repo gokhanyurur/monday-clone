@@ -30,9 +30,47 @@ export type Galaxy = {
   circleItems?: CircleItem[];
 };
 
+export type PersonImage = {
+  img?: string;
+  alt?: string;
+  class?: string;
+};
+
+export type TagLine = {
+  class?: string;
+  text?: string;
+};
+
+export type TypeWriterImg = {
+  imgPath?: string;
+  class?: string;
+  width?: string;
+  height?: string;
+  alt?: string;
+};
+
+export type TypeWriterLine = {
+  texts?: TagLine[];
+  class?: string;
+  id?: number;
+  text?: string;
+  img?: TypeWriterImg;
+};
+
+export type TypeWriter = {
+  wrapperClass?: string;
+  lines?: TypeWriterLine[];
+};
+
+export type Parallax = {
+  images?: PersonImage[];
+  typeWriter?: TypeWriter[];
+};
+
 export interface scrollParallax {
   paragraphs: Review[];
   galaxy: Galaxy[];
+  parallax: Parallax;
 }
 
 export const scrollParallaxData: scrollParallax = {
@@ -141,4 +179,85 @@ export const scrollParallaxData: scrollParallax = {
       ],
     },
   ],
+  parallax: {
+    images: [
+      {
+        img: "person1.png",
+        alt: "Person 1",
+        class: "person-1",
+      },
+      {
+        img: "person2.png",
+        alt: "Person 2",
+        class: "person-2",
+      },
+      {
+        img: "person3.png",
+        alt: "Person 3",
+        class: "person-3",
+      },
+    ],
+    typeWriter: [
+      {
+        wrapperClass: "person-1",
+        lines: [
+          {
+            id: 0,
+            texts: [
+              {
+                class: "tag",
+                text: "@Marketing Team",
+              },
+              {
+                text: "can",
+              },
+            ],
+          },
+          {
+            id: 1,
+            text: "you update about project progress?",
+          },
+        ],
+      },
+      {
+        wrapperClass: "person-2",
+        lines: [
+          {
+            id: 2,
+            text: "We're almost done,",
+          },
+          {
+            id: 3,
+            texts: [
+              {
+                class: "tag",
+                text: "@Samantha",
+              },
+              {
+                text: "can you add the file?",
+              },
+            ],
+          },
+        ],
+      },
+      {
+        wrapperClass: "person-3",
+        lines: [
+          {
+            id: 4,
+            text: "I have just uploaded it!",
+          },
+          {
+            img: {
+              imgPath: "pdf.png",
+              class: "pdf-icon",
+              alt: "PDF",
+              width: "70px",
+              height: "79px",
+            },
+          },
+        ],
+      },
+    ],
+  },
 };

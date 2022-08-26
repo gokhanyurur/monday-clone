@@ -92,15 +92,8 @@
                 </div>
               </div>
             </div>
-            <div class="asset-inner absolute stage-1-element">
-              <div class="window-mask">
-                <div class="window-header">
-                  <div class="circle-wrapper">
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                  </div>
-                </div>
+            <Window classes="asset-inner absolute stage-1-element">
+              <template #content>
                 <div class="window-content">
                   <div class="picture-component">
                     <img
@@ -116,17 +109,10 @@
                     />
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="asset-inner absolute stage-2-element fade-out">
-              <div class="window-mask">
-                <div class="window-header">
-                  <div class="circle-wrapper">
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                  </div>
-                </div>
+              </template>
+            </Window>
+            <Window classes="asset-inner absolute stage-2-element fade-out">
+              <template #content>
                 <div class="content-wrapper">
                   <div class="video-component">
                     <video
@@ -146,70 +132,71 @@
                     </video>
                   </div>
                 </div>
-              </div>
-            </div>
-            <div class="asset-inner person person-1">
+              </template>
+            </Window>
+            <div
+              v-for="(person, index) in parallaxData.images"
+              :key="`${person.alt}-key-${index}`"
+              class="asset-inner person"
+              :class="person.class"
+            >
               <div class="picture-component">
                 <img
-                  :src="getImgUrl('person1.png', '/parallax/galaxy-foreground')"
-                  alt="Person 1"
-                  width="50px"
-                  height="50px"
-                />
-              </div>
-            </div>
-            <div class="asset-inner person person-2">
-              <div class="picture-component">
-                <img
-                  :src="getImgUrl('person2.png', '/parallax/galaxy-foreground')"
-                  alt="Person 2"
-                  width="50px"
-                  height="50px"
-                />
-              </div>
-            </div>
-            <div class="asset-inner person person-3">
-              <div class="picture-component">
-                <img
-                  :src="getImgUrl('person3.png', '/parallax/galaxy-foreground')"
-                  alt="Person 3"
+                  :src="getImgUrl(person.img, '/parallax/galaxy-foreground')"
+                  :alt="person.alt"
                   width="50px"
                   height="50px"
                 />
               </div>
             </div>
             <div class="typewriter-elements-wrapper">
-              <div class="typed-component person person-1">
-                <span class="content" style="--letterNum: 19; --lineNum: 0">
-                  <span class="tag">{{ "@Marketing Team" }}</span>
-                  <span>{{ "can" }}</span>
-                </span>
-                <span class="content" style="--letterNum: 36; --lineNum: 1">
-                  <span>{{ "you update about project progress?" }}</span>
-                </span>
-              </div>
-              <div class="typed-component person person-2">
-                <span class="content" style="--letterNum: 18; --lineNum: 3">
-                  <span>{{ "We're almost done," }}</span>
-                </span>
-                <span class="content" style="--letterNum: 31; --lineNum: 4">
-                  <span class="tag">{{ "@Samantha" }}</span>
-                  <span>{{ "can you add the file?" }}</span>
-                </span>
-              </div>
-              <div class="typed-component person person-3">
-                <span class="content" style="--letterNum: 24; --lineNum: 5">
-                  <span>{{ "I have just uploaded it!" }}</span>
-                </span>
-                <div class="text-with-pdf">
-                  <img
-                    :src="getImgUrl('pdf.png', '/icons')"
-                    class="pdf-icon"
-                    width="70px"
-                    height="79px"
-                    alt="PDF"
-                  />
-                </div>
+              <div
+                v-for="(person, i) in parallaxData.typeWriter"
+                :key="`typewriter-key-${person.wrapperClass}-${i}`"
+                class="typed-component person"
+                :class="person.wrapperClass"
+              >
+                <template v-for="(line, j) in person.lines">
+                  <span
+                    v-if="line.text"
+                    :key="`line-key-${person.wrapperClass}-${j}`"
+                    class="content"
+                    :style="`--letter-num: ${calculateLetterCount(
+                      line.text
+                    )}; --line-num: ${line.id}`"
+                  >
+                    <span v-html="line.text"></span>
+                  </span>
+                  <span
+                    v-else-if="line.texts"
+                    :key="`lines-key-${person.wrapperClass}-${j}`"
+                    class="content"
+                    :style="`--letter-num:${calculateLetterCount(
+                      line.texts
+                    )}; --line-num:${line.id}`"
+                  >
+                    <span
+                      v-for="(str, k) in line.texts"
+                      :key="`line-${j}-string-${k}`"
+                      :class="`${str.class ? str.class : ''}`"
+                      v-html="str.text"
+                    >
+                    </span>
+                  </span>
+                  <div
+                    v-if="line.img"
+                    :key="`line-img-key-${person.wrapperClass}-${j}`"
+                    class="text-with-pdf"
+                  >
+                    <img
+                      :src="getImgUrl(line.img.imgPath, '/icons')"
+                      :class="line.img.class"
+                      :width="line.img.width"
+                      :height="line.img.height"
+                      :alt="line.img.alt"
+                    />
+                  </div>
+                </template>
               </div>
             </div>
           </div>
@@ -223,16 +210,19 @@
 <script>
 import Button from "../atoms/Button.vue";
 import TwinkleStars from "../atoms/TwinkleStars.vue";
+import Window from "../atoms/Window.vue";
+
 import { getImgUrl, getVideo } from "~/utils/helpers";
 import { scrollParallaxData } from "@/data/scrollParallax";
 
 export default {
   name: "ScrollParallax",
-  components: { Button, TwinkleStars },
+  components: { Button, TwinkleStars, Window },
   data() {
     return {
       paragraphs: scrollParallaxData.paragraphs,
       galaxyData: scrollParallaxData.galaxy,
+      parallaxData: scrollParallaxData.parallax,
     };
   },
   mounted() {
@@ -292,6 +282,18 @@ export default {
   methods: {
     getImgUrl,
     getVideo,
+    calculateLetterCount(line) {
+      if (typeof line === "string") {
+        const res = line.length;
+        return res;
+      } else {
+        let letterNum = 0;
+        line.forEach((theLine) => {
+          letterNum = letterNum + theLine.text.length;
+        });
+        return letterNum;
+      }
+    },
   },
 };
 </script>
@@ -605,7 +607,7 @@ export default {
                   animation-fill-mode: forwards;
                   visibility: hidden;
                   animation-delay: calc(
-                    6 * 0.6s
+                    5 * 0.6s
                   ); //6th element on typewriter stuff, 0.6s per line
                   @keyframes popOut {
                     0% {
@@ -629,8 +631,8 @@ export default {
             }
           }
           .content {
-            animation: typing 0.6s steps(var(--letterNum)) forwards;
-            animation-delay: calc(var(--lineNum) * 0.6s);
+            animation: typing 0.6s steps(var(--letter-num)) forwards;
+            animation-delay: calc(var(--line-num) * 0.6s);
             @keyframes typing {
               0% {
                 width: 0;
@@ -642,7 +644,7 @@ export default {
             &:not(:last-child) {
               &::before {
                 animation: typedBlinkFinite 0.6s forwards;
-                animation-delay: calc(var(--lineNum) * 0.6s);
+                animation-delay: calc(var(--line-num) * 0.6s);
               }
             }
             &:last-child {
