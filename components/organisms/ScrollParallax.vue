@@ -707,6 +707,7 @@ export default {
           }
           .tag {
             color: get-color("tag-blue");
+            padding-right: 6px;
           }
         }
       }
