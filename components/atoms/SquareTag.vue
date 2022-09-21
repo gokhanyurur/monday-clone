@@ -29,10 +29,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import { getImgUrl } from "@/utils/helpers";
 
-export default {
+export default Vue.extend({
   name: "SquareTag",
   props: {
     title: {
@@ -71,7 +72,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <style scoped lang="scss">

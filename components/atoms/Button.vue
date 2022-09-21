@@ -25,8 +25,10 @@
     </div>
   </button>
 </template>
-<script>
-export default {
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
   name: "Button",
   props: {
     classes: {
@@ -73,7 +75,7 @@ export default {
       console.log("clicked");
     },
   },
-};
+});
 </script>
 
 <style scoped></style>

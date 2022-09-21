@@ -19,8 +19,9 @@
 
 <script>
 import debounce from "debounce";
+import Vue from "vue";
 
-export default {
+export default Vue.extend({
   name: "TwinkleStars",
   props: {
     starData: {
@@ -58,7 +59,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <style scoped lang="scss">

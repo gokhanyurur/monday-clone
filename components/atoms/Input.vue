@@ -9,8 +9,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
   name: "Input",
   props: {
     classes: {
@@ -22,7 +24,7 @@ export default {
       default: "Enter your work email",
     },
   },
-};
+});
 </script>
 
 <style scoped lang="scss">

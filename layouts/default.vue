@@ -7,13 +7,14 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import Navigation from "@/components/organisms/Navigation";
 
-export default {
+export default Vue.extend({
   name: "Default",
   components: { Navigation },
-};
+});
 </script>
 
 <style lang="scss" scoped></style>

@@ -2,8 +2,10 @@
   <div class="triangle top" :class="`border-bottom-${color}`"></div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
   name: "SectionTriangle",
   props: {
     color: {
@@ -11,7 +13,7 @@ export default {
       default: "light",
     },
   },
-};
+});
 </script>
 
 <style scoped lang="scss">

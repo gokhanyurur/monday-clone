@@ -310,33 +310,9 @@ export default {
     }
   }
 }
-@keyframes fade-out {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-.fade-out {
-  animation: fade-out 0.35s ease-in;
-  animation-fill-mode: forwards;
-  opacity: 1;
-}
-.fade-in {
-  animation: fade-in 0.35s ease-in;
-  animation-fill-mode: forwards;
-  opacity: 1;
-}
+
 .scroll-parallax {
+  padding-bottom: 270px;
   .m__container {
     padding-left: 96px;
     padding-right: 96px;
@@ -354,13 +330,6 @@ export default {
   .paragraphs,
   .parallax {
     flex: 1;
-  }
-  .paragraphs {
-    .paragraph-body {
-      font-size: 20px;
-      font-weight: 300;
-      line-height: 32px;
-    }
   }
   &__feedback-btn {
     margin-top: 32px;

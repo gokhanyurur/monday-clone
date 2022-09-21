@@ -125,7 +125,8 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import SquareTags from "@/components/molecules/SquareTags";
 import Input from "@/components/atoms/Input";
 import Button from "@/components/atoms/Button";
@@ -133,14 +134,14 @@ import TwinkleStars from "@/components/atoms/TwinkleStars";
 import Separator from "@/components/atoms/Separator";
 import { getVideo, getImgUrl } from "@/utils/helpers";
 
-export default {
+export default Vue.extend({
   name: "Header",
   components: { SquareTags, Input, Button, Separator, TwinkleStars },
   methods: {
     getImgUrl,
     getVideo,
   },
-};
+});
 </script>
 
 <style scoped lang="scss">

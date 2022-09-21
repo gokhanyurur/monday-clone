@@ -10,7 +10,10 @@
       <SectionTriangle color="darkest-blue" />
       <ScrollParallax />
     </div>
-    <div style="height: 1000px" />
+    <div class="relative">
+      <SectionTriangle />
+      <Tabs />
+    </div>
   </div>
 </template>
 
@@ -21,10 +24,18 @@ import TrustBadges from "~/components/molecules/TrustBadges.vue";
 import SectionTriangle from "~/components/atoms/SectionTriangle.vue";
 import WorkOs from "~/components/molecules/WorkOs.vue";
 import ScrollParallax from "~/components/organisms/ScrollParallax.vue";
+import Tabs from "~/components/organisms/Tabs.vue";
 
 export default Vue.extend({
   name: "IndexPage",
-  components: { TrustBadges, Header, SectionTriangle, WorkOs, ScrollParallax },
+  components: {
+    TrustBadges,
+    Header,
+    SectionTriangle,
+    WorkOs,
+    ScrollParallax,
+    Tabs,
+  },
 });
 </script>
 <style scoped lang="scss"></style>
