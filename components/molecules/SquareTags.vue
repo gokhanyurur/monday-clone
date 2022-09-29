@@ -30,8 +30,8 @@
 
 <script lang="ts">
 import Vue from "vue";
-import SquareTag from "@/components/atoms/SquareTag";
-import Button from "@/components/atoms/Button";
+import SquareTag from "@/components/atoms/SquareTag.vue";
+import Button from "@/components/atoms/Button.vue";
 import { headerTags } from "@/data/headerTags";
 
 export default Vue.extend({

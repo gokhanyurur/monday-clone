@@ -52,8 +52,10 @@ export default Vue.extend({
   methods: {
     getImgUrl,
     toggleCheck() {
-      const tag = this.$refs["toggle-div"];
-      const ctaSection = this.$parent.$refs["header-cta-section"];
+      const tag = this.$refs["toggle-div"] as HTMLElement;
+      const ctaSection = this.$parent.$refs[
+        "header-cta-section"
+      ] as HTMLElement;
       tag.classList.toggle("active");
 
       if (ctaSection !== undefined) {

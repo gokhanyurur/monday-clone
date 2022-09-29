@@ -9,7 +9,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import Navigation from "@/components/organisms/Navigation";
+import Navigation from "@/components/organisms/Navigation.vue";
 
 export default Vue.extend({
   name: "Default",

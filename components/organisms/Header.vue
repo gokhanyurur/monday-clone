@@ -127,11 +127,11 @@
 
 <script lang="ts">
 import Vue from "vue";
-import SquareTags from "@/components/molecules/SquareTags";
-import Input from "@/components/atoms/Input";
-import Button from "@/components/atoms/Button";
-import TwinkleStars from "@/components/atoms/TwinkleStars";
-import Separator from "@/components/atoms/Separator";
+import SquareTags from "@/components/molecules/SquareTags.vue";
+import Input from "@/components/atoms/Input.vue";
+import Button from "@/components/atoms/Button.vue";
+import TwinkleStars from "@/components/atoms/TwinkleStars.vue";
+import Separator from "@/components/atoms/Separator.vue";
 import { getVideo, getImgUrl } from "@/utils/helpers";
 
 export default Vue.extend({
