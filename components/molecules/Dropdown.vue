@@ -35,8 +35,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
   name: "Dropdown",
   props: {
     classes: {
@@ -58,7 +60,7 @@ export default {
   },
 
   methods: {
-    handleClick() {
+    handleClick(): void {
       const data = {
         title: this.title,
         isOpened: !this.isOpened,
@@ -66,7 +68,7 @@ export default {
       this.$emit("updateVisibility", data);
     },
   },
-};
+});
 </script>
 
 <style scoped></style>

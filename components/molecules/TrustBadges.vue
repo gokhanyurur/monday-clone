@@ -24,11 +24,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import { trustedBy } from "@/data/trustedBy";
 import { getImgUrl } from "~/utils/helpers";
 
-export default {
+export default Vue.extend({
   name: "TrustBadges",
   data() {
     return {
@@ -38,7 +39,7 @@ export default {
   methods: {
     getImgUrl,
   },
-};
+});
 </script>
 
 <style scoped lang="scss">

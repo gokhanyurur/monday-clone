@@ -31,10 +31,11 @@
   </a>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import { getImgUrl } from "~/utils/helpers";
 
-export default {
+export default Vue.extend({
   name: "DropdownItem",
   props: {
     icon: {
@@ -61,7 +62,7 @@ export default {
   methods: {
     getImgUrl,
   },
-};
+});
 </script>
 
 <style scoped lang="scss">

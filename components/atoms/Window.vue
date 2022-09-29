@@ -13,8 +13,10 @@
   </div>
 </template>
 
-<script>
-export default {
+<script lang="ts">
+import Vue from "vue";
+
+export default Vue.extend({
   name: "Window",
   props: {
     classes: {
@@ -22,11 +24,7 @@ export default {
       default: "",
     },
   },
-  data() {
-    return {};
-  },
-  methods: {},
-};
+});
 </script>
 
 <style scoped lang="scss">

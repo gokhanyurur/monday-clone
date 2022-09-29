@@ -29,10 +29,11 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import Vue from "vue";
 import { getImgUrl } from "@/utils/helpers";
 
-export default {
+export default Vue.extend({
   name: "SquareTag",
   props: {
     title: {
@@ -51,8 +52,10 @@ export default {
   methods: {
     getImgUrl,
     toggleCheck() {
-      const tag = this.$refs["toggle-div"];
-      const ctaSection = this.$parent.$refs["header-cta-section"];
+      const tag = this.$refs["toggle-div"] as HTMLElement;
+      const ctaSection = this.$parent.$refs[
+        "header-cta-section"
+      ] as HTMLElement;
       tag.classList.toggle("active");
 
       if (ctaSection !== undefined) {
@@ -71,7 +74,7 @@ export default {
       }
     },
   },
-};
+});
 </script>
 
 <style scoped lang="scss">

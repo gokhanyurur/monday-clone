@@ -28,12 +28,13 @@
   </div>
 </template>
 
-<script>
-import SquareTag from "@/components/atoms/SquareTag";
-import Button from "@/components/atoms/Button";
+<script lang="ts">
+import Vue from "vue";
+import SquareTag from "@/components/atoms/SquareTag.vue";
+import Button from "@/components/atoms/Button.vue";
 import { headerTags } from "@/data/headerTags";
 
-export default {
+export default Vue.extend({
   name: "SquareTags",
   components: { SquareTag, Button },
   data() {
@@ -45,7 +46,7 @@ export default {
     };
   },
   methods: {
-    updateColors(color, add = false) {
+    updateColors(color: string, add = false) {
       if (add) {
         this.selectedTagColors.add(color);
       } else {
@@ -55,7 +56,7 @@ export default {
     },
     updateCurrentColor() {
       if (this.selectedTagColors.size > 0) {
-        const colors = [];
+        const colors: string[] = [];
         let i = 0;
         const gperc = 100 / (this.selectedTagColors.size - 1);
         this.selectedTagColors.forEach((color) => {
@@ -72,7 +73,7 @@ export default {
       this.currentBtnColor = this.defaultBtnColor;
     },
   },
-};
+});
 </script>
 
 <style scoped lang="scss">
