@@ -15,10 +15,6 @@ export default Vue.extend({
       default: "product-card",
     },
   },
-  data() {
-    return {};
-  },
-  methods: {},
 });
 </script>
 
