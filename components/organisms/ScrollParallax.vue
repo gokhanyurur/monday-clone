@@ -379,7 +379,7 @@ export default {
           width: 500px;
           height: 500px;
           margin: 0 auto;
-          background-color: #0f1048;
+          background-color: get-color("darkest-blue");
           .spin-container {
             background: rgb(89, 91, 221);
             background: linear-gradient(

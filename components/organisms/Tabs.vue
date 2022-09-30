@@ -153,6 +153,7 @@ export default Vue.extend({
 .m__tabs {
   &-desktop {
     padding-top: 40px;
+    padding-bottom: 200px;
     display: none;
     @include media-breakpoint-up("lg") {
       display: block;
@@ -225,6 +226,7 @@ export default Vue.extend({
   }
   &-content-wrapper {
     position: relative;
+    min-height: 567px;
     .tab-content {
       position: absolute;
       padding-left: 72px;

@@ -20,7 +20,7 @@
           }"
         >
           <template #additional>
-            <div class="comet-line" />
+            <div class="comet-line" style="--comet-color: #ffffff" />
           </template>
         </TwinkleStars>
         <div class="m__header__title text-center">
@@ -168,15 +168,6 @@ export default Vue.extend({
         }
       }
     }
-  }
-  .comet-line {
-    transform: rotate(0deg);
-    width: 105px;
-    top: 317px;
-    left: calc(50% - 90px);
-    background: linear-gradient(90deg, transparent, #fff);
-    position: absolute;
-    height: 1px;
   }
   &__title {
     max-width: 752px;
