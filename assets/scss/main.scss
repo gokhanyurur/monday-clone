@@ -181,6 +181,26 @@ b {
   font-weight: bold !important;
 }
 
+.comet-line {
+  transform: rotate(0deg);
+  width: 105px;
+  top: 317px;
+  left: calc(50% - 90px);
+  background: linear-gradient(90deg, transparent, var(--comet-color));
+  position: absolute;
+  height: 1px;
+  &--product-card { 
+    transform: scaleX(-1);
+    position: initial;
+    left: initial;
+    width: 100%;
+    top: initial;
+    height: 2px;
+    margin-top: 32px;
+    margin-bottom: 20px;
+  }
+}
+
 @keyframes fade-out {
   0% {
     opacity: 1;
