@@ -25,6 +25,9 @@
     <div class="relative">
       <Support />
     </div>
+    <div class="relative">
+      <Awards />
+    </div>
   </div>
 </template>
 
@@ -39,6 +42,7 @@ import Tabs from "~/components/organisms/Tabs.vue";
 import MondayProducts from "~/components/organisms/MondayProducts.vue";
 import SuccessStories from "~/components/organisms/SuccessStories.vue";
 import Support from "~/components/organisms/Support.vue";
+import Awards from "~/components/organisms/Awards.vue";
 
 export default Vue.extend({
   name: "IndexPage",
@@ -52,6 +56,7 @@ export default Vue.extend({
     MondayProducts,
     SuccessStories,
     Support,
+    Awards,
   },
 });
 </script>

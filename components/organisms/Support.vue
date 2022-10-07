@@ -82,9 +82,6 @@ import { getImgUrl } from "~/utils/helpers";
 export default Vue.extend({
   name: "Support",
   components: { Button },
-  data() {
-    return {};
-  },
   methods: {
     getImgUrl,
   },
