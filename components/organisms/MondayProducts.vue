@@ -139,7 +139,6 @@ export default Vue.extend({
   &-cards-wrapper {
     .product-card {
       position: relative;
-      z-index: 49;
     }
   }
   &-card {

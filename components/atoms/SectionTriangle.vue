@@ -1,5 +1,5 @@
 <template>
-  <div class="triangle top" :class="`border-bottom-${color}`"></div>
+  <div class="triangle" :class="`border-bottom-${color} ${position}`"></div>
 </template>
 
 <script lang="ts">
@@ -11,6 +11,10 @@ export default Vue.extend({
     color: {
       type: String,
       default: "light",
+    },
+    position: {
+      type: String,
+      default: "top",
     },
   },
 });
@@ -31,6 +35,13 @@ export default Vue.extend({
     height: 0;
     margin-top: -13.9vw;
     border-right: 100vw solid transparent;
+  }
+  &.bottom {
+    width: 0;
+    height: 0;
+    margin-top: -13.9vw;
+    border-right: 100vw solid transparent;
+    bottom: 0;
   }
 }
 </style>

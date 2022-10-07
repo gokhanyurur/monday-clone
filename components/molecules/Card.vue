@@ -21,6 +21,7 @@ export default Vue.extend({
 <style scoped lang="scss">
 .card,
 .product-card {
+  width: 286px;
   margin-top: 32px;
   margin-left: 10px;
   margin-right: 10px;
@@ -29,6 +30,7 @@ export default Vue.extend({
   color: get-color("dark");
   position: relative;
   box-shadow: 0px 8px 24px 0 rgb(29 140 242 / 16%);
+  z-index: 49;
   &:hover {
     box-shadow: 0px 8px 24px 0 rgb(29 140 242 / 32%);
   }
@@ -39,6 +41,5 @@ export default Vue.extend({
 .product-card {
   padding: 32px 24px;
   padding-bottom: 32px;
-  width: 286px;
 }
 </style>
