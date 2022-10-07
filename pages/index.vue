@@ -22,6 +22,9 @@
       <SectionTriangle color="light" />
       <SuccessStories />
     </div>
+    <div class="relative">
+      <Support />
+    </div>
   </div>
 </template>
 
@@ -35,6 +38,7 @@ import ScrollParallax from "~/components/organisms/ScrollParallax.vue";
 import Tabs from "~/components/organisms/Tabs.vue";
 import MondayProducts from "~/components/organisms/MondayProducts.vue";
 import SuccessStories from "~/components/organisms/SuccessStories.vue";
+import Support from "~/components/organisms/Support.vue";
 
 export default Vue.extend({
   name: "IndexPage",
@@ -47,6 +51,7 @@ export default Vue.extend({
     Tabs,
     MondayProducts,
     SuccessStories,
+    Support,
   },
 });
 </script>
