@@ -10,7 +10,7 @@
         <nav class="m__nav__wrapper">
           <div class="flex float-right h-full items-center pl-8">
             <Button
-              classes="bg-main-blue text-light px-4 pt-3 pb-2 rounded-full outline-none m__btn w-fit"
+              classes="bg-main-blue text-light px-4 pt-3 pb-3 rounded-full outline-none m__btn w-fit"
             />
           </div>
           <div class="flex float-right h-full items-center">

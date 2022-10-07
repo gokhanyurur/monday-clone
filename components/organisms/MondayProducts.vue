@@ -133,13 +133,13 @@ export default Vue.extend({
     display: flex;
   }
   &__video {
-    padding-bottom: 200px;
+    padding-bottom: 250px;
     background-color: get-color("darkest-blue");
   }
   &-cards-wrapper {
     .product-card {
       position: relative;
-      z-index: 100;
+      z-index: 49;
     }
   }
   &-card {
