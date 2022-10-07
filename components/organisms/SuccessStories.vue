@@ -82,7 +82,7 @@ import { successStoriesData } from "@/data/successStories";
 import { getImgUrl } from "~/utils/helpers";
 
 export default Vue.extend({
-  name: "MondayProducts",
+  name: "SuccessStories",
   components: { Button },
   data() {
     return {
