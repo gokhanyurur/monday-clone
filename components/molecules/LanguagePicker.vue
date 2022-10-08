@@ -75,7 +75,7 @@ export default Vue.extend({
   props: {
     languages: {
       required: true,
-      type: Object as () => Language,
+      type: Array as () => Language[],
       default: undefined,
     },
   },
