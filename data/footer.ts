@@ -20,9 +20,14 @@ interface FooterColumn {
   categories: Category[];
 }
 
+export interface Language {
+  language: string;
+  href: string;
+}
+
 interface FooterData {
   columns: FooterColumn[];
-  languages: { language: string; href: string }[];
+  languages: Language[];
   socials: FooterLink[];
   appStoreLinks: FooterLink[];
   securityLogos: FooterLink[];
@@ -37,7 +42,7 @@ export const footerData: FooterData = {
       categories: [
         {
           title: {
-            imgPath: "monday-com-logo.png",
+            imgPath: "monday-com-logo.svg",
             alt: "Monday logo",
             width: "127px",
             height: "42px",
@@ -133,8 +138,8 @@ export const footerData: FooterData = {
             },
             {
               icon: {
-                imgPath: "work-management.png",
-                alt: "monday work management",
+                imgPath: "sales.png",
+                alt: "monday sales",
                 width: "18px",
                 height: "18px",
               },
@@ -143,8 +148,8 @@ export const footerData: FooterData = {
             },
             {
               icon: {
-                imgPath: "work-management.png",
-                alt: "monday work management",
+                imgPath: "marketer.png",
+                alt: "monday marketer",
                 width: "18px",
                 height: "18px",
               },
@@ -153,8 +158,8 @@ export const footerData: FooterData = {
             },
             {
               icon: {
-                imgPath: "work-management.png",
-                alt: "monday work management",
+                imgPath: "projects.png",
+                alt: "monday projects",
                 width: "18px",
                 height: "18px",
               },
@@ -163,8 +168,8 @@ export const footerData: FooterData = {
             },
             {
               icon: {
-                imgPath: "work-management.png",
-                alt: "monday work management",
+                imgPath: "dev.png",
+                alt: "monday dev",
                 width: "18px",
                 height: "18px",
               },
@@ -188,7 +193,7 @@ export const footerData: FooterData = {
             },
             {
               icon: {
-                imgPath: "work-forms.png",
+                imgPath: "workforms.png",
                 alt: "WorkForms",
                 width: "18px",
                 height: "18px",
@@ -370,7 +375,7 @@ export const footerData: FooterData = {
       href: "#",
     },
     {
-      language: "Pусский",
+      language: "Pyccкий",
       href: "#",
     },
     {
@@ -466,9 +471,9 @@ export const footerData: FooterData = {
     },
     {
       icon: {
-        imgPath: "app-storre.svg",
+        imgPath: "app-store.svg",
         alt: "App Store icon",
-        width: "135px",
+        width: "120px",
         height: "40px",
       },
       href: "#",
@@ -477,7 +482,7 @@ export const footerData: FooterData = {
   securityLogos: [
     {
       icon: {
-        imgPath: "gdpr-logo.svg",
+        imgPath: "gdpr-logo.png",
         alt: "GDPR logo",
         width: "32px",
         height: "32px",
@@ -486,7 +491,7 @@ export const footerData: FooterData = {
     },
     {
       icon: {
-        imgPath: "iso-logo.svg",
+        imgPath: "iso-logo.png",
         alt: "ISO logo",
         width: "32px",
         height: "32px",
@@ -495,7 +500,7 @@ export const footerData: FooterData = {
     },
     {
       icon: {
-        imgPath: "soc-logo.svg",
+        imgPath: "soc-logo.png",
         alt: "SOC logo",
         width: "32px",
         height: "32px",
@@ -504,7 +509,7 @@ export const footerData: FooterData = {
     },
     {
       icon: {
-        imgPath: "hipaa-logo.svg",
+        imgPath: "hipaa-logo.png",
         alt: "Hipaa logo",
         width: "39px",
         height: "32px",
