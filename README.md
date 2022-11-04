@@ -1,5 +1,8 @@
 # monday-clone
 
+## Preview url
+https://monday-clone-phi.vercel.app/
+
 ## Build Setup
 
 ```bash
