@@ -3,6 +3,9 @@
 ## Preview url
 https://monday-clone-phi.vercel.app/
 
+# Note
+Discontinued after finishing 1920x1080 resolution. The elements could be looking broken or completely missing on lower resolutions.
+
 ## Build Setup
 
 ```bash
